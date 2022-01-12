@@ -407,7 +407,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc01bb663a977c459feda2efaa39d53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stone: {fileID: 5060686818907218120, guid: 1f7a03b96f7ef014f8519ecb40e32cdd, type: 3}
+  stonePrefab: {fileID: 5060686818907218120, guid: 1f7a03b96f7ef014f8519ecb40e32cdd, type: 3}
+  throwForce: 2
 --- !u!1 &1923068439
 GameObject:
   m_ObjectHideFlags: 0
