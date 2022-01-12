@@ -7,7 +7,7 @@
             "actions": [
                 {
                     "name": "Moving",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "9c4b376f-2b00-4a2c-8c24-5ed2694609f1",
                     "expectedControlType": "Button",
                     "processors": "",

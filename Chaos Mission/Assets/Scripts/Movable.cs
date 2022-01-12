@@ -37,7 +37,7 @@ namespace ChaosMission
 
         private void Move(InputAction.CallbackContext context)
         {
-            _rigidbody2D.AddForce(context.ReadValue<Vector2>() * _moveSpeed, ForceMode2D.Force);
+            _rigidbody2D.AddForce(context.ReadValue<float>() * Vector2.right * _moveSpeed, ForceMode2D.Force);
             // Debug.Log("Move");
         }
     }
