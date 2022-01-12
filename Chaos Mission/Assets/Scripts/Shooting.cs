@@ -3,12 +3,15 @@ using UnityEngine.InputSystem;
 
 public class Shooting : MonoBehaviour
 {
-    [SerializeField] private GameObject stone;
+    [SerializeField] private GameObject stonePrefab;
+    [SerializeField] private float throwForce = 20f;
     
-    private void OnShoot(InputValue inputValue)
+    private void OnShoot()
     {
-        var mousePosition = inputValue.Get<Vector3>();
+        var mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        mousePosition.z = 0f;
         var playerPosition = transform.position;
-        Instantiate(stone, playerPosition, Quaternion.FromToRotation(playerPosition, mousePosition));
+        Flying stone = Instantiate(stonePrefab, mousePosition, Quaternion.identity).GetComponent<Flying>();
+        stone.Throw(throwForce*(mousePosition-playerPosition));
     }
 }

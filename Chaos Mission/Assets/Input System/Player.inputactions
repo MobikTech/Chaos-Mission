@@ -9,7 +9,7 @@
                     "name": "Move",
                     "type": "Value",
                     "id": "8e6018be-9ff6-4abd-83fd-c3be81fb1906",
-                    "expectedControlType": "Vector3",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
                 },
@@ -31,9 +31,9 @@
                 },
                 {
                     "name": "Shoot",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "e487b2ed-68b6-4989-93ed-02f755f079c9",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 }
