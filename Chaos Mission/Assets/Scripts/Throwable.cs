@@ -3,7 +3,7 @@ using UnityEngine;
 namespace ChaosMission
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class Flying : MonoBehaviour
+    public class Throwable: MonoBehaviour
     {
         private Rigidbody2D _rigidbody2D;
 
