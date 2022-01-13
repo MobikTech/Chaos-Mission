@@ -42,10 +42,15 @@ namespace ChaosMission
 
         private void OnShoot(InputAction.CallbackContext context)
         {
-            var direction = GetNormalizedThrowVector();
-            context.ReadValue<Vector3>();
+            Vector3 mousePosition = GetScreenMousePosition();
+            var direction = GetNormalizedThrowVector(mousePosition);
             Throwable bullet = SpawnBullet(direction);
             ThrowBullet(bullet, direction);
+        }
+
+        private Vector3 GetScreenMousePosition()
+        {
+            return Mouse.current.position.ReadValue();
         }
 
         private void ThrowBullet(Throwable bullet, Vector3 direction)
@@ -60,11 +65,11 @@ namespace ChaosMission
             return bullet.GetComponent<Throwable>();
         }
 
-        private Vector3 GetMousePosition()
+        private Vector3 GetWorldMousePosition(Vector3 mousePosition)
         {
-            Vector3 mousePosition = _mainCamera.ScreenToWorldPoint(//Mouse.current.position.ReadValue());
-            mousePosition.z = 0f;
-            return mousePosition;
+            Vector3 worldMousePosition = _mainCamera.ScreenToWorldPoint(mousePosition);
+            worldMousePosition.z = 0f;
+            return worldMousePosition;
         }
 
         private Vector3 GetBulletSpawnPosition(Vector3 direction)
@@ -73,11 +78,11 @@ namespace ChaosMission
             return playerPosition + _offset * direction;
         }
 
-        private Vector3 GetNormalizedThrowVector()
+        private Vector3 GetNormalizedThrowVector(Vector3 mousePosition)
         {
-            Vector3 mousePosition = GetMousePosition();
+            Vector3 worldMousePosition = GetWorldMousePosition(mousePosition);
             Vector3 playerPosition = transform.position;
-            return (mousePosition - playerPosition).normalized;
+            return (worldMousePosition - playerPosition).normalized;
         }
     }
 }

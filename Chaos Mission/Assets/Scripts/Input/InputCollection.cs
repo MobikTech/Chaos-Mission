@@ -30,7 +30,7 @@ namespace ChaosMission.Input
                 },
                 {
                     ""name"": ""Shooting"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""d031ab5e-46b9-4e9b-ae74-5e2d1b354986"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
