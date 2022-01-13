@@ -178,4 +178,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stonePrefab: {fileID: 5060686818907218120, guid: 1f7a03b96f7ef014f8519ecb40e32cdd, type: 3}
   throwForce: 13
-  offset: 2
+  offset: 1

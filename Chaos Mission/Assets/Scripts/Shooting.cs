@@ -5,7 +5,7 @@ public class Shooting : MonoBehaviour
 {
     [SerializeField] private GameObject stonePrefab;
     [SerializeField] private float throwForce = 13f;
-    [SerializeField] private float offset = 2f;
+    [SerializeField] private float offset = 1f;
     
     private void OnShoot()
     {
