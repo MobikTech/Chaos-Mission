@@ -4,8 +4,8 @@ using UnityEngine.InputSystem;
 public class Shooting : MonoBehaviour
 {
     [SerializeField] private GameObject stonePrefab;
-    [SerializeField] private float throwForce = 1f;
-    [SerializeField] private float offset = 1f;
+    [SerializeField] private float throwForce = 13f;
+    [SerializeField] private float offset = 2f;
     
     private void OnShoot()
     {
