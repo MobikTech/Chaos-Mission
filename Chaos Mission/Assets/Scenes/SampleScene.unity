@@ -500,6 +500,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1261462874}
     m_Modifications:
+    - target: {fileID: 380152860, guid: 7b56b76e64b78a440ab4f766572c0e5b, type: 3}
+      propertyPath: _jumpForce
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5821064650510393305, guid: 7b56b76e64b78a440ab4f766572c0e5b, type: 3}
       propertyPath: m_RootOrder
       value: 1
