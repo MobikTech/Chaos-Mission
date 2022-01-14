@@ -24,9 +24,9 @@ namespace ChaosMission.Input
                     ""name"": ""Moving"",
                     ""type"": ""Value"",
                     ""id"": ""9c4b376f-2b00-4a2c-8c24-5ed2694609f1"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
                 },
                 {
                     ""name"": ""Shooting"",
@@ -58,7 +58,7 @@ namespace ChaosMission.Input
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
+                    ""name"": ""Negative"",
                     ""id"": ""b6490bed-cf14-4234-a490-f2941b478bf7"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
@@ -69,7 +69,7 @@ namespace ChaosMission.Input
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""positive"",
+                    ""name"": ""Positive"",
                     ""id"": ""4d8540d3-b9f6-45c5-b373-5a60b9192aaa"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",

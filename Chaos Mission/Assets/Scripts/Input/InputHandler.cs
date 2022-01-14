@@ -10,28 +10,20 @@ namespace ChaosMission.Input
         Jumping,
         Shooting
     }
+    
     public sealed class InputHandler : MonoBehaviour
     {
-        // private static readonly InputCollection InputCollection;
-        private InputCollection InputCollection;
+        private InputCollection _inputCollection;
 
-        // static InputHandler()
-        // {
-        //     InputCollection = new InputCollection();
-        // }
-
-        private void Awake()
-        {
-            InputCollection = new InputCollection();
-        }
+        private void Awake() => _inputCollection = new InputCollection();
 
         private InputAction GetByType(InputActions action)
         {
             return action switch
             {
-                InputActions.Moving => InputCollection.Player.Moving,
-                InputActions.Jumping => InputCollection.Player.Jumping,
-                InputActions.Shooting => InputCollection.Player.Shooting,
+                InputActions.Moving => _inputCollection.Player.Moving,
+                InputActions.Jumping => _inputCollection.Player.Jumping,
+                InputActions.Shooting => _inputCollection.Player.Shooting,
                 _ => throw new ArgumentOutOfRangeException(nameof(action), action, null)
             };
         }
@@ -40,9 +32,12 @@ namespace ChaosMission.Input
         
         public void DisableAction(InputActions action) => GetByType(action).Disable();
 
-        public void AddHandler(InputActions action, Action<InputAction.CallbackContext> handler) =>
+        public void AddHandler(InputActions action, Action<InputAction.CallbackContext> handler)
+        {
             GetByType(action).performed += handler;
-        
+            // GetByType(action).triggered
+        }
+
         public void RemoveHandler(InputActions action, Action<InputAction.CallbackContext> handler) =>
             GetByType(action).performed -= handler;
     }

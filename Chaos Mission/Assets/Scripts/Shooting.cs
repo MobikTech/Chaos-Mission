@@ -14,7 +14,7 @@ namespace ChaosMission
         private Camera _mainCamera;
         private InputHandler _inputHandler;
 
-        #region UnityMethods
+#region UnityMethods
 
         private void Awake()
         {
@@ -37,7 +37,7 @@ namespace ChaosMission
             _inputHandler.RemoveHandler(InputActions.Shooting, OnShoot);
         }
 
-        #endregion
+#endregion
 
 
         private void OnShoot(InputAction.CallbackContext context)
