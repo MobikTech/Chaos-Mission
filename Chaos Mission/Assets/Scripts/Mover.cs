@@ -13,18 +13,19 @@ namespace ChaosMission
         [SerializeField] private float _maxMoveSpeed = 6f;
         [SerializeField, Range(0, 1)] private float _accelerationFactor = 0.3f;
         
-        
         [Space, Header("Jumping Setting")]
         [SerializeField] public float _jumpForce = 13f;
         [SerializeField] private BoxCollider2D _boxCollider2D;
         [SerializeField] private LayerMask _groundLayerMask;
 
+        private const float GroundCheckerHeightPercent = 0.1f;
+        private const float GroundCheckerWidthPercent = 0.9f;
+        
         private Rigidbody2D _rigidbody2D;
         private InputHandler _inputHandler;
 
-        private const float GroundCheckerHeightPercent = 0.1f;
-        private const float GroundCheckerWidthPercent = 0.9f;
-     
+        private bool _jumping = false;
+        
 
 #region UnityMethods
 
@@ -51,6 +52,21 @@ namespace ChaosMission
             _inputHandler.RemoveHandler(InputActions.Moving, OnMove);
             _inputHandler.RemoveHandler(InputActions.Jumping, OnJump);
         }
+        
+        private void OnDrawGizmosSelected()
+        {
+            Vector2 colliderSize = _boxCollider2D.size;
+            
+            Vector3 gizmoSquareCenter = _boxCollider2D.bounds.center;
+            gizmoSquareCenter.y -= colliderSize.y / 2 + colliderSize.y * GroundCheckerHeightPercent / 2;
+            Vector3 gizmoSquareSize = new Vector3(
+                colliderSize.x * GroundCheckerWidthPercent, 
+                colliderSize.y * GroundCheckerHeightPercent,
+                0.01f);
+
+            ChangeJumpingGizmosColor();
+            Gizmos.DrawWireCube(gizmoSquareCenter, gizmoSquareSize);
+        }
 
 #endregion
 
@@ -60,6 +76,8 @@ namespace ChaosMission
             if (OnGround())
             {
                 _rigidbody2D.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+                _jumping = true;
+                StartCoroutine(Jumping());
             }
         }
 
@@ -76,19 +94,19 @@ namespace ChaosMission
             return Physics2D.OverlapBox(boxCenter, boxSize, 0f, _groundLayerMask.value);
         }
 
-        private void OnDrawGizmosSelected()
-        {
-            Vector2 colliderSize = _boxCollider2D.size;
-            
-            Vector3 gizmoSquareCenter = _boxCollider2D.bounds.center;
-            gizmoSquareCenter.y -= colliderSize.y / 2 + colliderSize.y * GroundCheckerHeightPercent / 2;
-            Vector3 gizmoSquareSize = new Vector3(
-                colliderSize.x * GroundCheckerWidthPercent, 
-                colliderSize.y * GroundCheckerHeightPercent,
-                0.01f);
+        
 
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireCube(gizmoSquareCenter, gizmoSquareSize);
+        private void ChangeJumpingGizmosColor()
+        {
+            switch (_jumping)
+            {
+                case true:
+                    Gizmos.color = Color.red;
+                    break;
+                case false:
+                    Gizmos.color = Color.green;
+                    break;
+            }
         }
 
         private IEnumerator Moving(InputAction.CallbackContext context)
@@ -107,7 +125,20 @@ namespace ChaosMission
             }
             
             _rigidbody2D.velocity = new Vector2(0f, _rigidbody2D.velocity.y);
-            // yield break;
+        }
+
+        private IEnumerator Jumping()
+        {
+            while (OnGround())
+            {
+                yield return null;
+            }
+            while (!OnGround())
+            {
+                yield return null;
+            }
+
+            _jumping = false;
         }
     }
 }
