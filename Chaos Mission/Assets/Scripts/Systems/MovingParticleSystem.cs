@@ -18,7 +18,6 @@ namespace ChaosMission.Systems
         {
             foreach (ParticleSystem movingParticleSystem in _movingParticleSystems)
             {
-                movingParticleSystem.Stop();
                 Movable movable = movingParticleSystem.gameObject.GetComponentInParent<Movable>();
                 movingParticleSystem.gameObject.transform.parent.TryGetComponent(out Jumpable jumpable);
                 
@@ -45,7 +44,6 @@ namespace ChaosMission.Systems
                         movingParticleSystem.Play();
                     }
                 };
-
             }
         }
         
@@ -53,7 +51,6 @@ namespace ChaosMission.Systems
         {
             foreach (ParticleSystem jumpingParticleSystem in _jumpingParticleSystems)
             {
-                jumpingParticleSystem.Stop();
                 jumpingParticleSystem.gameObject.transform.parent.TryGetComponent(out Jumpable jumpable);
             
                 jumpable.StartJumping += () => jumpingParticleSystem.Play();
