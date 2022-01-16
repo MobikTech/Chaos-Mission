@@ -7,12 +7,8 @@ using UnityEngine.InputSystem;
 namespace ChaosMission
 {
     [RequireComponent(typeof(InputHandler), typeof(Rigidbody2D))]
-    public sealed class Mover : MonoBehaviour
+    public class Jumpable : MonoBehaviour
     {
-        [Header("Moving Setting")]
-        [SerializeField] private float _maxMoveSpeed = 6f;
-        [SerializeField, Range(0, 1)] private float _accelerationFactor = 0.3f;
-        
         [Space, Header("Jumping Setting")]
         [SerializeField] public float _jumpForce = 13f;
         [SerializeField] private BoxCollider2D _boxCollider2D;
@@ -24,9 +20,12 @@ namespace ChaosMission
         private Rigidbody2D _rigidbody2D;
         private InputHandler _inputHandler;
 
-        private bool _jumping = false;
-        
+        public bool OnJumping { get; private set; } = false;
 
+        public Action StartJumping;
+        public Action StopJumping;
+        
+        
 #region UnityMethods
 
         private void Awake()
@@ -39,17 +38,13 @@ namespace ChaosMission
 
         private void OnEnable()
         {
-            _inputHandler.EnableAction(InputActions.Moving);
             _inputHandler.EnableAction(InputActions.Jumping);
-            _inputHandler.AddHandler(InputActions.Moving, OnMove);
             _inputHandler.AddHandler(InputActions.Jumping, OnJump);
         }
 
         private void OnDisable()
         {
-            _inputHandler.DisableAction(InputActions.Moving);
             _inputHandler.DisableAction(InputActions.Jumping);
-            _inputHandler.RemoveHandler(InputActions.Moving, OnMove);
             _inputHandler.RemoveHandler(InputActions.Jumping, OnJump);
         }
         
@@ -64,23 +59,24 @@ namespace ChaosMission
                 colliderSize.y * GroundCheckerHeightPercent,
                 0.01f);
 
-            ChangeJumpingGizmosColor();
+            Gizmos.color = OnJumping ? Color.red : Color.green;
             Gizmos.DrawWireCube(gizmoSquareCenter, gizmoSquareSize);
         }
 
 #endregion
 
-        private void OnMove(InputAction.CallbackContext context) => StartCoroutine(Moving(context));
         private void OnJump(InputAction.CallbackContext context)
         {
-            if (OnGround())
+            if (!OnGround())
             {
-                _rigidbody2D.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
-                _jumping = true;
-                StartCoroutine(Jumping());
+                return;
             }
+            _rigidbody2D.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+            OnJumping = true;
+            StartCoroutine(Jumping());
         }
 
+        
         private bool OnGround()
         {
             Vector2 colliderSize = _boxCollider2D.size;
@@ -91,44 +87,13 @@ namespace ChaosMission
                 colliderSize.x * GroundCheckerWidthPercent,
                 colliderSize.y * GroundCheckerHeightPercent);
 
-            return Physics2D.OverlapBox(boxCenter, boxSize, 0f, _groundLayerMask.value);
+            return Physics2D.OverlapBox(boxCenter, boxSize, 0f, _groundLayerMask.value) != null;
         }
-
         
-
-        private void ChangeJumpingGizmosColor()
-        {
-            switch (_jumping)
-            {
-                case true:
-                    Gizmos.color = Color.red;
-                    break;
-                case false:
-                    Gizmos.color = Color.green;
-                    break;
-            }
-        }
-
-        private IEnumerator Moving(InputAction.CallbackContext context)
-        {
-            WaitForFixedUpdate fixedUpdate = new WaitForFixedUpdate();
-            
-            while (context.phase == InputActionPhase.Performed)
-            {
-                Vector2 currentVelocity = _rigidbody2D.velocity;
-                float xVelocityAddition = context.ReadValue<float>() * _accelerationFactor;
-                _rigidbody2D.velocity = new Vector2(
-                        Mathf.Clamp(currentVelocity.x + xVelocityAddition, -_maxMoveSpeed, _maxMoveSpeed), 
-                        currentVelocity.y);
-                
-                yield return fixedUpdate;
-            }
-            
-            _rigidbody2D.velocity = new Vector2(0f, _rigidbody2D.velocity.y);
-        }
-
+        
         private IEnumerator Jumping()
         {
+            StartJumping?.Invoke();
             while (OnGround())
             {
                 yield return null;
@@ -138,7 +103,9 @@ namespace ChaosMission
                 yield return null;
             }
 
-            _jumping = false;
+            OnJumping = false;
+            StopJumping?.Invoke();
         }
+
     }
 }

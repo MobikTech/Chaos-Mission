@@ -7,7 +7,8 @@ namespace ChaosMission
     [RequireComponent(typeof(InputHandler))]
     public sealed class Shooting : MonoBehaviour
     {
-        [SerializeField] private GameObject _stonePrefab;
+        [SerializeField] private GameObject _bulletPrefab;
+        [SerializeField] private Transform _bulletsParent;
         [SerializeField] private float _throwForce = 13f;
         [SerializeField] private float _offset = 1f;
 
@@ -61,7 +62,7 @@ namespace ChaosMission
         private Throwable SpawnBullet(Vector3 direction)
         {
             Vector3 spawnPosition = GetBulletSpawnPosition(direction);
-            GameObject bullet = Instantiate(_stonePrefab, spawnPosition, Quaternion.identity, transform);
+            GameObject bullet = Instantiate(_bulletPrefab, spawnPosition, Quaternion.identity, _bulletsParent);
             return bullet.GetComponent<Throwable>();
         }
 
