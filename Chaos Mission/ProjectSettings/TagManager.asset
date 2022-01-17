@@ -41,3 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 3248322775
+    locked: 0
+  - name: Water
+    uniqueID: 661085335
+    locked: 0
+  - name: 'Traps '
+    uniqueID: 2857817123
+    locked: 0
+  - name: Climbing
+    uniqueID: 663877653
+    locked: 0
+  - name: Platforms
+    uniqueID: 3387389883
+    locked: 0
