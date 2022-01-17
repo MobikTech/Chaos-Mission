@@ -8,7 +8,8 @@ namespace ChaosMission.Input
     {
         Moving,
         Jumping,
-        Shooting
+        Shooting,
+        Climbing
     }
     
     public sealed class InputHandler : MonoBehaviour
@@ -24,6 +25,7 @@ namespace ChaosMission.Input
                 InputActions.Moving => _inputCollection.Player.Moving,
                 InputActions.Jumping => _inputCollection.Player.Jumping,
                 InputActions.Shooting => _inputCollection.Player.Shooting,
+                InputActions.Climbing => _inputCollection.Player.Climbing,
                 _ => throw new ArgumentOutOfRangeException(nameof(action), action, null)
             };
         }
