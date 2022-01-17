@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 324363554}
   - component: {fileID: 324363556}
   - component: {fileID: 324363555}
+  - component: {fileID: 324363557}
   m_Layer: 0
   m_Name: Climbing Tilemap
   m_TagString: Untagged
@@ -689,6 +690,22 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &324363557
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 324363553}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
 --- !u!1 &359553412
 GameObject:
   m_ObjectHideFlags: 0
@@ -15910,6 +15927,7 @@ GameObject:
   - component: {fileID: 1288573154}
   - component: {fileID: 1288573156}
   - component: {fileID: 1288573155}
+  - component: {fileID: 1288573157}
   m_Layer: 0
   m_Name: Water Tilemap
   m_TagString: Untagged
@@ -16225,6 +16243,22 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &1288573157
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1288573153}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
 --- !u!1 &1465230592
 GameObject:
   m_ObjectHideFlags: 0
@@ -16319,6 +16353,7 @@ GameObject:
   - component: {fileID: 1530319519}
   - component: {fileID: 1530319521}
   - component: {fileID: 1530319520}
+  - component: {fileID: 1530319522}
   m_Layer: 0
   m_Name: Traps Tilemap
   m_TagString: Untagged
@@ -16900,6 +16935,22 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &1530319522
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1530319518}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
 --- !u!1 &1728332016
 GameObject:
   m_ObjectHideFlags: 0
@@ -16911,6 +16962,7 @@ GameObject:
   - component: {fileID: 1728332017}
   - component: {fileID: 1728332019}
   - component: {fileID: 1728332018}
+  - component: {fileID: 1728332020}
   m_Layer: 0
   m_Name: Platforms Tilemap
   m_TagString: Untagged
@@ -21023,8 +21075,8 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 13
-      m_TileMatrixIndex: 0
+      m_TileSpriteIndex: 4
+      m_TileMatrixIndex: 1
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
@@ -26882,7 +26934,7 @@ Tilemap:
     m_Data: {fileID: -2464266514383608195, guid: 9601f379898aa4443b5f45033086717b, type: 3}
   - m_RefCount: 133
     m_Data: {fileID: -4977721373819348528, guid: 9601f379898aa4443b5f45033086717b, type: 3}
-  - m_RefCount: 46
+  - m_RefCount: 47
     m_Data: {fileID: -3503154757471595975, guid: 9601f379898aa4443b5f45033086717b, type: 3}
   - m_RefCount: 26
     m_Data: {fileID: -3326836957996475874, guid: 9601f379898aa4443b5f45033086717b, type: 3}
@@ -26900,7 +26952,7 @@ Tilemap:
     m_Data: {fileID: 7799159119227759483, guid: 9601f379898aa4443b5f45033086717b, type: 3}
   - m_RefCount: 54
     m_Data: {fileID: -3493280607249542649, guid: 9601f379898aa4443b5f45033086717b, type: 3}
-  - m_RefCount: 17
+  - m_RefCount: 16
     m_Data: {fileID: 7953296568139915108, guid: 9601f379898aa4443b5f45033086717b, type: 3}
   - m_RefCount: 10
     m_Data: {fileID: -5134054752372163016, guid: 9601f379898aa4443b5f45033086717b, type: 3}
@@ -26917,7 +26969,7 @@ Tilemap:
   - m_RefCount: 12
     m_Data: {fileID: 6192572789505845407, guid: 9601f379898aa4443b5f45033086717b, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 765
+  - m_RefCount: 764
     m_Data:
       e00: 1
       e01: 0
@@ -26935,7 +26987,7 @@ Tilemap:
       e31: 0
       e32: 0
       e33: 1
-  - m_RefCount: 145
+  - m_RefCount: 146
     m_Data:
       e00: -1
       e01: 0
@@ -27034,3 +27086,19 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &1728332020
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728332016}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
