@@ -1,3 +1,5 @@
+using ChaosMission.Player;
+using ChaosMission.Player.MovingStates;
 using UnityEngine;
 
 namespace ChaosMission.Systems
@@ -15,32 +17,29 @@ namespace ChaosMission.Systems
 
         private void InitMovingParticleSystems()
         {
-            foreach (ParticleSystem movingParticleSystem in _movingParticleSystems)
+            
+            foreach (ParticleSystem walkingParticleSystem in _movingParticleSystems)
             {
-                Movable movable = movingParticleSystem.gameObject.GetComponentInParent<Movable>();
-                movingParticleSystem.gameObject.transform.parent.TryGetComponent(out Jumpable jumpable);
+                walkingParticleSystem.gameObject.transform.parent.TryGetComponent(out MoveController moveController);
                 
-                movable.MovingStarted += () =>
+                moveController.MovingStates[MovingState.Walking].StateStartedAction += () =>
                 {
-                    if (jumpable == null || jumpable.OnJumping)
+                    if (moveController.MovingStates[MovingState.Jumping].IsActive)
                     {
                         return;
                     }
-                    movingParticleSystem.Play();
+                    walkingParticleSystem.Play();
                 };
-                movable.MovingStopped += () => movingParticleSystem.Stop();
-
-                if (jumpable == null)
-                {
-                    continue;
-                }
                 
-                jumpable.StartJumping += () => movingParticleSystem.Stop();
-                jumpable.StopJumping += () =>
+                moveController.MovingStates[MovingState.Walking].StateStoppedAction += () => walkingParticleSystem.Stop();
+
+                moveController.MovingStates[MovingState.Jumping].StateStartedAction += () => walkingParticleSystem.Stop();
+                
+                moveController.MovingStates[MovingState.Jumping].StateStoppedAction += () =>
                 {
-                    if (movable.OnMoving)
+                    if ( moveController.MovingStates[MovingState.Walking].IsActive)
                     {
-                        movingParticleSystem.Play();
+                        walkingParticleSystem.Play();
                     }
                 };
             }
@@ -50,11 +49,11 @@ namespace ChaosMission.Systems
         {
             foreach (ParticleSystem jumpingParticleSystem in _jumpingParticleSystems)
             {
-                jumpingParticleSystem.gameObject.transform.parent.TryGetComponent(out Jumpable jumpable);
+                jumpingParticleSystem.gameObject.transform.parent.TryGetComponent(out MoveController moveController);
             
-                jumpable.StartJumping += () => jumpingParticleSystem.Play();
-                jumpable.StopJumping += () => jumpingParticleSystem.Stop();
-
+                moveController.MovingStates[MovingState.Jumping].StateStartedAction += () => jumpingParticleSystem.Play();
+                
+                // moveController.MovingStates[MovingState.Jumping].StateStoppedAction += () => jumpingParticleSystem.Stop();
             }
         }
     }

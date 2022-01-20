@@ -48,7 +48,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -4852,7 +4852,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -9678,10 +9678,8 @@ GameObject:
   - component: {fileID: 8561713768865477596}
   - component: {fileID: 8688159654618952098}
   - component: {fileID: 9210857160915351509}
-  - component: {fileID: 8581201484876551424}
-  - component: {fileID: 380152860}
-  - component: {fileID: 1580562767}
-  - component: {fileID: 370891660}
+  - component: {fileID: 7851906410231597126}
+  - component: {fileID: 1586192290799495993}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -9803,7 +9801,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8581201484876551424
+--- !u!114 &7851906410231597126
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9812,10 +9810,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 9055431775295644128}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d84f139c8d84c8c8a4fb03940bf9dbe, type: 3}
+  m_Script: {fileID: 11500000, guid: 7fabc1b5aeba44cf92a2011fa4a77de0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &380152860
+  _movingSettings: {fileID: 11400000, guid: feaf5c3a6a07cc74dbe23c73682d8f29, type: 2}
+--- !u!114 &1586192290799495993
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9824,41 +9823,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 9055431775295644128}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab3e6d342c4040d8883367fc850ec27e, type: 3}
+  m_Script: {fileID: 11500000, guid: 65e0be4936e043ed88a6ca4ef2c58aee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxMoveSpeed: 6
-  _accelerationFactor: 0.3
---- !u!114 &1580562767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9055431775295644128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1213013baca24afd9c64dedbe4bd18bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _jumpForce: 13
-  _boxCollider2D: {fileID: 9210857160915351509}
-  _groundLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
---- !u!114 &370891660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9055431775295644128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edc01bb663a977c459feda2efaa39d53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 5060686818907218120, guid: 1f7a03b96f7ef014f8519ecb40e32cdd, type: 3}
-  _bulletsParent: {fileID: 0}
-  _throwForce: 13
-  _offset: 1

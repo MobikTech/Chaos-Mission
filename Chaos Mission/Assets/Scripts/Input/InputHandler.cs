@@ -11,11 +11,14 @@ namespace ChaosMission.Input
         Shooting
     }
     
-    public sealed class InputHandler : MonoBehaviour
+    public sealed class InputHandler
     {
-        private InputCollection _inputCollection;
+        private readonly InputCollection _inputCollection;
 
-        private void Awake() => _inputCollection = new InputCollection();
+        public InputHandler()
+        {
+            _inputCollection = new InputCollection();
+        }
 
         private InputAction GetByType(InputActions action)
         {
@@ -32,11 +35,8 @@ namespace ChaosMission.Input
         
         public void DisableAction(InputActions action) => GetByType(action).Disable();
 
-        public void AddHandler(InputActions action, Action<InputAction.CallbackContext> handler)
-        {
+        public void AddHandler(InputActions action, Action<InputAction.CallbackContext> handler) =>
             GetByType(action).performed += handler;
-            // GetByType(action).triggered
-        }
 
         public void RemoveHandler(InputActions action, Action<InputAction.CallbackContext> handler) =>
             GetByType(action).performed -= handler;
