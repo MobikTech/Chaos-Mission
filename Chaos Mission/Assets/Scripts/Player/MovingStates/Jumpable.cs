@@ -37,48 +37,39 @@ namespace ChaosMission.Player.MovingStates
         void IHandleableByInput.OnEnable()
         {
             _inputHandler.EnableAction(InputActions.Jumping);
-            _inputHandler.AddHandler(InputActions.Jumping, OnJump);
+            _inputHandler.AddHandler(InputActions.Jumping, OnJumpingWant);
         }
 
         void IHandleableByInput.OnDisable()
         {
             _inputHandler.DisableAction(InputActions.Jumping);
-            _inputHandler.RemoveHandler(InputActions.Jumping, OnJump);
+            _inputHandler.RemoveHandler(InputActions.Jumping, OnJumpingWant);
         }
 
 #endregion
 
-
-        private void OnJump(InputAction.CallbackContext context)
+        private void OnJumpingWant(InputAction.CallbackContext context)
         {
             if (!OnGround())
             {
                 return;
             }
-            _rigidbody2D.AddForce(Vector2.up * _jumpingSettings.JumpForce, ForceMode2D.Impulse);
+            JumpAsync(Vector2.up);
+        }
+        
+        private bool OnGround() =>
+            _collider2D.OverlapBoxOnDown(
+                _jumpingSettings.GroundLayerMask,
+                _jumpingSettings.GroundCheckerHeightPercent,
+                _jumpingSettings.GroundCheckerWidthPercent);
+
+        private async void JumpAsync(Vector2 forceDirection)
+        {
+            _rigidbody2D.velocity += forceDirection * _jumpingSettings.JumpForce;
+
             IsActive = true;
-            Jumping();
-        }
-
-        
-        private bool OnGround()
-        {
-            Bounds bounds = _collider2D.bounds;
-            Vector2 colliderSize = bounds.size;
-            Vector3 colliderCenter = bounds.center;
-
-            Vector2 boxCenter = new Vector2(colliderCenter.x, colliderCenter.y - colliderSize.y / 2);
-            Vector2 boxSize = new Vector2(
-                colliderSize.x * _jumpingSettings.GroundCheckerWidthPercent,
-                colliderSize.y * _jumpingSettings.GroundCheckerHeightPercent);
-
-            return Physics2D.OverlapBox(boxCenter, boxSize, 0f, _jumpingSettings.GroundLayerMask.value) != null;
-        }
-        
-        
-        private async void Jumping()
-        {
             StateStartedAction?.Invoke();
+            
             while (OnGround())
             {
                 await Task.Delay(UnityTimeHelper.GetMillisecondsToNextFixedUpdate());

@@ -17,6 +17,7 @@ namespace ChaosMission.Settings.PlayerMoving
         
         [Header("Climbing")]
         [SerializeField] private LayerMask _wallLayerMask;
+        [SerializeField] private float _fromWallJumpForce = 13f;
         [SerializeField] private float _slippingFactor = 1.2f;
         [SerializeField] private float _distance = 0.02f;
         
@@ -26,18 +27,14 @@ namespace ChaosMission.Settings.PlayerMoving
 
         
         public LayerMask GroundLayerMask => _groundLayerMask;
-
         public float JumpForce => _jumpForce;
-
         public float GroundCheckerHeightPercent => _groundCheckerHeightPercent;
-
         public float GroundCheckerWidthPercent => _groundCheckerWidthPercent;
 
         
         public LayerMask WallLayerMask => _wallLayerMask;
-
+        public float FromWallJumpForce => _fromWallJumpForce;
         public float SlippingFactor => _slippingFactor;
-
         public float Distance => _distance;
 
     }

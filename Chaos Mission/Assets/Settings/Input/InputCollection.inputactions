@@ -11,7 +11,8 @@
                     "id": "9c4b376f-2b00-4a2c-8c24-5ed2694609f1",
                     "expectedControlType": "Axis",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": "Press",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Shooting",
@@ -19,7 +20,8 @@
                     "id": "d031ab5e-46b9-4e9b-ae74-5e2d1b354986",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Jumping",
@@ -27,7 +29,26 @@
                     "id": "b0470950-05a3-4cb6-820e-c44802b77cf6",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ClimbingDownhill",
+                    "type": "Button",
+                    "id": "1d34af8f-ff1c-4b12-8e14-c5db99a750fb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ClimbingJump",
+                    "type": "Button",
+                    "id": "8089b770-c131-4c05-a9fb-795d06c48aa1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -83,6 +104,28 @@
                     "processors": "",
                     "groups": "MouseKeyboard",
                     "action": "Jumping",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b50c3473-51d6-4d16-a8dd-12a19b0aefc0",
+                    "path": "<Keyboard>/s",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "MouseKeyboard",
+                    "action": "ClimbingDownhill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a89972db-fb18-4927-881d-2f2c09ed90b5",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MouseKeyboard",
+                    "action": "ClimbingJump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

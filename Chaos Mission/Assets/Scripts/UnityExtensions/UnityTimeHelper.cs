@@ -5,12 +5,16 @@ namespace ChaosMission.UnityExtensions
 {
     public static class UnityTimeHelper
     {
+        private const int MillisecondsInSeconds = 1000;
+        private const int RoundAccuracy = 3;
+        private static readonly float FixedDeltaTime = Time.fixedDeltaTime;
+
+
         public static int GetMillisecondsToNextFixedUpdate()
         {
-            float fixedDeltaTime = Time.fixedDeltaTime;
-            float timeFromLastFixedUpdate = (Time.realtimeSinceStartup - Time.fixedUnscaledTime) % fixedDeltaTime;
-            double inSeconds = Math.Round(fixedDeltaTime - timeFromLastFixedUpdate, 3);
-            return (int)(inSeconds * 1000);
+            float timeFromLastFixedUpdate = (Time.realtimeSinceStartup - Time.fixedUnscaledTime) % FixedDeltaTime;
+            float inSeconds = FixedDeltaTime - timeFromLastFixedUpdate;
+            return (int)(inSeconds * MillisecondsInSeconds);
         }
     }
 }

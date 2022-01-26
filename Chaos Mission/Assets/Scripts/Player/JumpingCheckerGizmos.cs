@@ -3,22 +3,22 @@ using UnityEngine;
 
 namespace ChaosMission.Player
 {
-    [RequireComponent(typeof(Collider2D), typeof(MoveController))]
+    // [RequireComponent(typeof(Collider2D), typeof(MoveController))]
     public class JumpingCheckerGizmos : MonoBehaviour
     {
         //todo: serialize interface IJumpingSettings
         [SerializeField] private MovingSettings _movingSettings;
-        private MoveController _moveController;
-        private Collider2D _collider2D;
-
-        private void Awake()
-        {
-            _moveController = GetComponent<MoveController>();
-            _collider2D = GetComponent<Collider2D>();
-        }
+        [SerializeField] private Collider2D _collider2D;
+        [SerializeField] private MoveController _moveController;
 
         private void OnDrawGizmosSelected()
         {
+// #if (UNITY_EDITOR == false)
+
+            if (_moveController == null)
+            {
+                return;
+            }
             var bounds = _collider2D.bounds;
             Vector2 colliderSize = bounds.size;
             Vector3 gizmoSquareCenter = bounds.center;
@@ -31,6 +31,7 @@ namespace ChaosMission.Player
         
             Gizmos.color = _moveController.MovingStates[MovingState.Jumping].IsActive ? Color.red : Color.green;
             Gizmos.DrawWireCube(gizmoSquareCenter, gizmoSquareSize);
+// #endif
         }
     }
 }

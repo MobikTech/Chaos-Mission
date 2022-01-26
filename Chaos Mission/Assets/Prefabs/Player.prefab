@@ -9826,3 +9826,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65e0be4936e043ed88a6ca4ef2c58aee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _movingSettings: {fileID: 11400000, guid: feaf5c3a6a07cc74dbe23c73682d8f29, type: 2}
+  _collider2D: {fileID: 9210857160915351509}
+  _moveController: {fileID: 7851906410231597126}

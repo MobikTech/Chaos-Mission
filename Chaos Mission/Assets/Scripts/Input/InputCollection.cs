@@ -55,6 +55,24 @@ namespace ChaosMission.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ClimbingDownhill"",
+                    ""type"": ""Button"",
+                    ""id"": ""1d34af8f-ff1c-4b12-8e14-c5db99a750fb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ClimbingJump"",
+                    ""type"": ""Button"",
+                    ""id"": ""8089b770-c131-4c05-a9fb-795d06c48aa1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -112,6 +130,28 @@ namespace ChaosMission.Input
                     ""action"": ""Jumping"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b50c3473-51d6-4d16-a8dd-12a19b0aefc0"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": ""MouseKeyboard"",
+                    ""action"": ""ClimbingDownhill"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a89972db-fb18-4927-881d-2f2c09ed90b5"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MouseKeyboard"",
+                    ""action"": ""ClimbingJump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -151,6 +191,8 @@ namespace ChaosMission.Input
             m_Player_Moving = m_Player.FindAction("Moving", throwIfNotFound: true);
             m_Player_Shooting = m_Player.FindAction("Shooting", throwIfNotFound: true);
             m_Player_Jumping = m_Player.FindAction("Jumping", throwIfNotFound: true);
+            m_Player_ClimbingDownhill = m_Player.FindAction("ClimbingDownhill", throwIfNotFound: true);
+            m_Player_ClimbingJump = m_Player.FindAction("ClimbingJump", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -213,6 +255,8 @@ namespace ChaosMission.Input
         private readonly InputAction m_Player_Moving;
         private readonly InputAction m_Player_Shooting;
         private readonly InputAction m_Player_Jumping;
+        private readonly InputAction m_Player_ClimbingDownhill;
+        private readonly InputAction m_Player_ClimbingJump;
         public struct PlayerActions
         {
             private @InputCollection m_Wrapper;
@@ -220,6 +264,8 @@ namespace ChaosMission.Input
             public InputAction @Moving => m_Wrapper.m_Player_Moving;
             public InputAction @Shooting => m_Wrapper.m_Player_Shooting;
             public InputAction @Jumping => m_Wrapper.m_Player_Jumping;
+            public InputAction @ClimbingDownhill => m_Wrapper.m_Player_ClimbingDownhill;
+            public InputAction @ClimbingJump => m_Wrapper.m_Player_ClimbingJump;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -238,6 +284,12 @@ namespace ChaosMission.Input
                     @Jumping.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJumping;
                     @Jumping.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJumping;
                     @Jumping.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJumping;
+                    @ClimbingDownhill.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClimbingDownhill;
+                    @ClimbingDownhill.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClimbingDownhill;
+                    @ClimbingDownhill.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClimbingDownhill;
+                    @ClimbingJump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClimbingJump;
+                    @ClimbingJump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClimbingJump;
+                    @ClimbingJump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClimbingJump;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -251,6 +303,12 @@ namespace ChaosMission.Input
                     @Jumping.started += instance.OnJumping;
                     @Jumping.performed += instance.OnJumping;
                     @Jumping.canceled += instance.OnJumping;
+                    @ClimbingDownhill.started += instance.OnClimbingDownhill;
+                    @ClimbingDownhill.performed += instance.OnClimbingDownhill;
+                    @ClimbingDownhill.canceled += instance.OnClimbingDownhill;
+                    @ClimbingJump.started += instance.OnClimbingJump;
+                    @ClimbingJump.performed += instance.OnClimbingJump;
+                    @ClimbingJump.canceled += instance.OnClimbingJump;
                 }
             }
         }
@@ -278,6 +336,8 @@ namespace ChaosMission.Input
             void OnMoving(InputAction.CallbackContext context);
             void OnShooting(InputAction.CallbackContext context);
             void OnJumping(InputAction.CallbackContext context);
+            void OnClimbingDownhill(InputAction.CallbackContext context);
+            void OnClimbingJump(InputAction.CallbackContext context);
         }
     }
 }

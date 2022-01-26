@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace ChaosMission.Input
@@ -8,7 +7,9 @@ namespace ChaosMission.Input
     {
         Moving,
         Jumping,
-        Shooting
+        Shooting,
+        ClimbingJump,
+        ClimbingDownhill,
     }
     
     public sealed class InputHandler
@@ -27,6 +28,8 @@ namespace ChaosMission.Input
                 InputActions.Moving => _inputCollection.Player.Moving,
                 InputActions.Jumping => _inputCollection.Player.Jumping,
                 InputActions.Shooting => _inputCollection.Player.Shooting,
+                InputActions.ClimbingJump => _inputCollection.Player.ClimbingJump,
+                InputActions.ClimbingDownhill => _inputCollection.Player.ClimbingDownhill,
                 _ => throw new ArgumentOutOfRangeException(nameof(action), action, null)
             };
         }
