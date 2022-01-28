@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option csharp_namespace = "LocalServer.Serializer";
+
+message MessageInfo{
+    float x = 1;
+}
+// D:\Programs\Dev\Protobuf Compiler\bin 
+// protoc -I=D:\UnityProjects\Chaos-Mission\Server\LocalServer\Settings --csharp_out=D:\UnityProjects\Chaos-Mission\Server\LocalServer\Serializer D:\UnityProjects\Chaos-Mission\Server\LocalServer\Settings\MessageInfo.proto

@@ -19,7 +19,7 @@ namespace ChaosMission.Player
         public Dictionary<MovingState, IMovingState> MovingStates { get; private set; }
         private List<IHandleableByInput> _handleableByInputStatesList;
         private List<IDisposable> _disposableStates;
-
+        
         private void Awake()
         {
             _collider2D = GetComponent<Collider2D>();
@@ -60,4 +60,5 @@ namespace ChaosMission.Player
             _disposableStates.ForEach(state => state.Dispose());
         }
     }
+
 }
