@@ -15,9 +15,8 @@ namespace ChaosMission.Player
             {
                 Destroy(gameObject);
             };
-            _healthBar.SetMaxHealth(_maxhelth);
-            _healthBar.SetCurrentHealth(_maxhelth);
-            _health.DisplayHealth += _healthBar.SetCurrentHealth;
+            _healthBar.SetCurrentNormalizedHealth(_health.GetCurrentNormalizedHealth());
+            _health.DisplayHealth += _healthBar.SetCurrentNormalizedHealth;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -29,7 +28,7 @@ namespace ChaosMission.Player
             if (damageDealer != null)
             {
                 _health.TakeDamage(damageDealer.GetDamage());
-                _healthBar.SetCurrentHealth(_health.CurrentHealth);
+                _healthBar.SetCurrentNormalizedHealth(_health.CurrentHealth);
             }
 
             if (healDealer != null)

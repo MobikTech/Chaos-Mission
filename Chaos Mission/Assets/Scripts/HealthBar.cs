@@ -7,14 +7,9 @@ namespace ChaosMission
     {
         [SerializeField] private Slider _slider;
 
-        public void SetCurrentHealth(int health)
+        public void SetCurrentNormalizedHealth(float health)
         {
             _slider.value = health;
-        }
-
-        public void SetMaxHealth(int health)
-        {
-            _slider.maxValue = health;
         }
     }
 }

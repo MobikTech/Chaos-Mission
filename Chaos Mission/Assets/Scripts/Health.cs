@@ -7,12 +7,16 @@ namespace ChaosMission
         public int CurrentHealth { get; private set; }
         public readonly int MaxHealth;
         public Action Die;
-        public Action<int> DisplayHealth;
+        public Action<float> DisplayHealth;
 
+        public float GetCurrentNormalizedHealth()
+        {
+            return (float) CurrentHealth / MaxHealth;
+        }
         public void TakeDamage(int damage)
         {
             CurrentHealth -= damage;
-            DisplayHealth?.Invoke(CurrentHealth);
+            DisplayHealth?.Invoke(GetCurrentNormalizedHealth());
             if (CurrentHealth <= 0)
             {
                 Die?.Invoke();
@@ -32,7 +36,7 @@ namespace ChaosMission
                 CurrentHealth = MaxHealth;
             }
 
-            DisplayHealth?.Invoke(CurrentHealth);
+            DisplayHealth?.Invoke(GetCurrentNormalizedHealth());
         }
 
         public Health(int maxHealth) : this(maxHealth, maxHealth)
