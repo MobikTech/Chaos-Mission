@@ -6,6 +6,7 @@ namespace ChaosMission.Player
     {
         private Health _health;
         [SerializeField] private int _maxhelth;
+        [SerializeField] private HealthBar _healthBar;
 
         private void Awake()
         {
@@ -14,16 +15,9 @@ namespace ChaosMission.Player
             {
                 Destroy(gameObject);
             };
-        }
-
-        public int GetCurrentHealth()
-        {
-            return _health.CurrentHealth;
-        }
-
-        public int GetMaxHealth()
-        {
-            return _maxhelth;
+            _healthBar.SetMaxHealth(_maxhelth);
+            _healthBar.SetCurrentHealth(_maxhelth);
+            _health.DisplayHealth += _healthBar.SetCurrentHealth;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -35,6 +29,7 @@ namespace ChaosMission.Player
             if (damageDealer != null)
             {
                 _health.TakeDamage(damageDealer.GetDamage());
+                _healthBar.SetCurrentHealth(_health.CurrentHealth);
             }
 
             if (healDealer != null)
