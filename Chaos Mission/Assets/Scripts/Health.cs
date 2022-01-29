@@ -1,56 +1,47 @@
-using UnityEngine;
+using System;
 
 namespace ChaosMission
 {
-    public class Health : MonoBehaviour
+    public class Health
     {
-        [SerializeField] private int _health = 50;
-        [SerializeField] private int _maxHealth = 100;
+        public int CurrentHealth { get; private set; }
+        public readonly int MaxHealth;
+        public Action Die;
 
-        private void OnTriggerEnter2D(Collider2D other)
+        public void TakeDamage(int damage)
         {
-            DamageDealer damageDealer = other.GetComponent<DamageDealer>();
-
-            HealDealer healDealer = other.GetComponent<HealDealer>();
-
-            if (damageDealer != null)
+            CurrentHealth -= damage;
+            if (CurrentHealth <= 0)
             {
-                TakeDamage(damageDealer.GetDamage());
-            }
-
-            if (healDealer != null)
-            {
-                Heal(healDealer.GetHeal());
+                Die?.Invoke();
             }
         }
 
-        private void TakeDamage(int damage)
+        public void Heal(int heal)
         {
-            _health -= damage;
-            if (_health <= 0)
-            {
-                Die();
-            }
-        }
-
-        private void Heal(int heal)
-        {
-            if (_health == _maxHealth) return;
+            if (CurrentHealth == MaxHealth) return;
             
-            if (_health + heal < _maxHealth)
+            if (CurrentHealth + heal < MaxHealth)
             {
-                _health += heal;
+                CurrentHealth += heal;
             }
             else
             {
-                _health = _maxHealth;
+                CurrentHealth = MaxHealth;
             }
         }
-        
 
-        private void Die()
+        public Health(int maxHealth) : this(maxHealth, maxHealth)
         {
-            Destroy(gameObject);
+            
         }
+
+        public Health(int maxHealth, int currentCurrentHealth)
+        {
+            CurrentHealth = currentCurrentHealth;
+            MaxHealth = maxHealth;
+        }
+        
+        
     }
 }
