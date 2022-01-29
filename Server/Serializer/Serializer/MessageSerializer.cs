@@ -1,6 +1,6 @@
 using Google.Protobuf;
 
-namespace LocalServer.Serializer
+namespace Serializer
 {
     public static class MessageSerializer 
     {

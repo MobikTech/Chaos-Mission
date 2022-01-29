@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option csharp_namespace = "LocalServer.Serializer";
+option csharp_namespace = "Serializer";
 
 message MessageInfo{
     float x = 1;

@@ -9,7 +9,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace LocalServer.Serializer {
+namespace Serializer {
 
   /// <summary>Holder for reflection information generated from MessageInfo.proto</summary>
   public static partial class MessageInfoReflection {
@@ -29,7 +29,7 @@ namespace LocalServer.Serializer {
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::LocalServer.Serializer.MessageInfo), global::LocalServer.Serializer.MessageInfo.Parser, new[]{ "X" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Serializer.MessageInfo), global::Serializer.MessageInfo.Parser, new[]{ "X" }, null, null, null, null)
           }));
     }
     #endregion
@@ -50,7 +50,7 @@ namespace LocalServer.Serializer {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::LocalServer.Serializer.MessageInfoReflection.Descriptor.MessageTypes[0]; }
+      get { return global::Serializer.MessageInfoReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

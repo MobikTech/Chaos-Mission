@@ -1,5 +1,5 @@
 using System.Net.Sockets;
-using LocalServer.Serializer;
+using Serializer;
 
 namespace LocalServer
 {
