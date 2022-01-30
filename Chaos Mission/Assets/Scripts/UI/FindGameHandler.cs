@@ -1,12 +1,13 @@
+using ChaosMission.Networking;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace ChaosMission.UI
 {
     public sealed class FindGameHandler : MonoBehaviour
     {
         [SerializeField] private TMP_InputField _inputField;
+        // [SerializeField] private NetworkClient _networkClient;
 
         public void TryConnectToServer()
         {

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
@@ -23,9 +24,9 @@ namespace LocalServer
             _clients = new Dictionary<int, Client>();
         }
 
-#region IServer Methods
+#region IServerMethods
 
-        public async void RunServer()
+        public void RunServer()
         {
             Console.WriteLine("Starting server...");
                     
@@ -34,14 +35,13 @@ namespace LocalServer
                     
             Console.WriteLine($"Server started on {_serverIpPoint.Address}:{_serverIpPoint.Port}.");
             
-            Task t = StartClientsAccepting();
+            StartClientsAccepting();
             
-            while (true) ;
-            // StartReceiving();
         }
 
         public void CloseServer()
         {
+            StopClientsAccepting();
             foreach (Client client in _clients.Values)
             {
                 DisconnectClient(client.ID);
@@ -54,44 +54,16 @@ namespace LocalServer
 
 #endregion
        
-        private async Task StartClientsAccepting()
+        private async void StartClientsAccepting()
         {
-            StopClientsAccepting();
             while (_accepting)
             {
                 Socket clientSocket = await _serverSocket.AcceptAsync();
-                Client client = AddClient(clientSocket);
-                StartReceiving(client);
+                AddClient(clientSocket);
             }
         }
 
         private void StopClientsAccepting() => _accepting = false;
-
-
-
-        // private void StartReceiving()
-        // {
-        //     while (true)
-        //     {
-        //         foreach (Client client in _clients.Values)
-        //         {
-        //             // if (lastNumber != _clients.Count)
-        //             // {
-        //             //     lastNumber = _clients.Count;
-        //             //     Console.WriteLine(lastNumber);
-        //             // }
-        //             if (client.Socket.Available > 0)
-        //             {
-        //                 Console.WriteLine($"[{DateTime.Now.ToString()}] {client.ID}: {client.ReceiveFromThis<Vector3>().ToString()}");
-        //             }
-        //         }
-        //         // if (!_serverSocket.)
-        //         // {
-        //         //     continue;
-        //         // }
-        //         
-        //     }
-        // }
 
         private Client AddClient(Socket clientSocket)
         {
@@ -101,10 +73,11 @@ namespace LocalServer
             Console.WriteLine("New client connected!");
             Console.WriteLine($"Current clients amount: {_clients.Count}");
 
+            StartReceiving(newClient);
             return newClient;
         }
 
-        private async Task StartReceiving(Client client)
+        private async void StartReceiving(Client client)
         {
             await Task.Run(() =>
             {
@@ -115,7 +88,7 @@ namespace LocalServer
                         continue;
                     }
                     Console.WriteLine(
-                        $"[{DateTime.Now.ToString()}] {client.ID}: {client.ReceiveFromThis().X}");
+                        $"[{DateTime.Now.ToString(CultureInfo.CurrentCulture)}] {client.ID}: {client.ReceiveFromThis().X}");
                 }
             });
         }
