@@ -4,6 +4,8 @@ using System.Globalization;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
+using LocalServer.Settings;
+using Serializer;
 
 namespace LocalServer
 {
@@ -15,10 +17,12 @@ namespace LocalServer
 
         private readonly Dictionary<int, Client> _clients;
         private bool _accepting = true;
+        private readonly GameState _currentGameState;
 
         public Server(string ip, int port, int maxPlayers)
         {
             _maxPlayers = maxPlayers;
+            _currentGameState = new GameState();
             _serverIpPoint = new IPEndPoint(IPAddress.Parse(ip), port);
             _serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             _clients = new Dictionary<int, Client>();
@@ -26,7 +30,7 @@ namespace LocalServer
 
 #region IServerMethods
 
-        public void RunServer()
+        public async void RunServer()
         {
             Console.WriteLine("Starting server...");
                     
@@ -35,8 +39,8 @@ namespace LocalServer
                     
             Console.WriteLine($"Server started on {_serverIpPoint.Address}:{_serverIpPoint.Port}.");
             
+            StartNotifyPlayers();
             StartClientsAccepting();
-            
         }
 
         public void CloseServer()
@@ -47,23 +51,66 @@ namespace LocalServer
                 DisconnectClient(client.ID);
             }
             _clients.Clear();
-            
+
             _serverSocket.Shutdown(SocketShutdown.Both);
             _serverSocket.Close();
         }
 
 #endregion
        
-        private async void StartClientsAccepting()
+        private void StartClientsAccepting()
         {
             while (_accepting)
             {
-                Socket clientSocket = await _serverSocket.AcceptAsync();
+                Socket clientSocket = _serverSocket.Accept();
                 AddClient(clientSocket);
             }
         }
-
         private void StopClientsAccepting() => _accepting = false;
+
+        private async void StartNotifyPlayers()
+        {
+            // while (_serverSocket.IsBound)
+            // {
+            //     if (_clients.Count == 0)
+            //     {
+            //         continue;
+            //     }
+            //     
+            //     MessageInfo messageInfo = new MessageInfo(x: _currentGameState.CurrentNumber);
+            //
+            //     foreach (Client client in _clients.Values)
+            //     {
+            //         client.SendToThis(messageInfo);
+            //     }
+            //         
+            //     _currentGameState.CurrentNumber++;
+            //     await Task.Delay(1000 / ServerSettings.NotificationFrequencyPerSec);
+            // }
+
+            await Task.Run(async () =>
+            {
+                while (_serverSocket.IsBound)
+                {
+                    if (_clients.Count == 0)
+                    {
+                        continue;
+                    }
+                    
+                    var messageInfo = new MessageInfo(x: _currentGameState.CurrentNumber);
+            
+                    foreach (Client client in _clients.Values)
+                    {
+                        // Console.WriteLine($"Local {client.ID} - {client.Socket.LocalEndPoint}");
+                        // Console.WriteLine($"Remote {client.ID} - {client.Socket.RemoteEndPoint}");
+                        client.SendToThis(messageInfo);
+                    }
+                    
+                    _currentGameState.CurrentNumber++;
+                    await Task.Delay(1000 / ServerSettings.NotificationFrequencyPerSec);
+                }
+            });
+        }
 
         private Client AddClient(Socket clientSocket)
         {
@@ -88,7 +135,7 @@ namespace LocalServer
                         continue;
                     }
                     Console.WriteLine(
-                        $"[{DateTime.Now.ToString(CultureInfo.CurrentCulture)}] {client.ID}: {client.ReceiveFromThis().X}");
+                        $"[{DateTime.Now.ToString(CultureInfo.CurrentCulture)}] {client.ID}: {client.ReceiveFromThis().ToString()}");
                 }
             });
         }
@@ -103,6 +150,10 @@ namespace LocalServer
             _clients.Remove(id);
         }
 
+        private void ChangeGameState()
+        {
+            
+        }
 
         public void Dispose() => CloseServer();
     }

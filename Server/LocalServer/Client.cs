@@ -1,3 +1,4 @@
+using System;
 using System.Net.Sockets;
 using Serializer;
 
@@ -9,6 +10,8 @@ namespace LocalServer
         public readonly int ID;
         
         private static int _lastId = 0;
+        
+        private readonly ISerializer<MessageInfo> _serializer = new ProtobufSerializer<MessageInfo>();
 
         public Client(Socket client)
         {
@@ -16,18 +19,17 @@ namespace LocalServer
             ID = _lastId++;
         }
         
-        public void SendMessageToThis(string message)
-        { 
-    
+        public void SendToThis(MessageInfo messageInfo)
+        {
+            byte[] message = _serializer.Serialize(messageInfo);
+            Socket.Send(message);
         }
-        
         public MessageInfo ReceiveFromThis()
         {
-            byte[] receivingData = new byte[512];
+            byte[] usefulData = new byte[Socket.Available];
 
-            Socket.Receive(receivingData);
-
-            return MessageSerializer.Deserialize(receivingData);
+            Socket.Receive(usefulData);
+            return _serializer.Deserialize(usefulData);
         }
     }
 }
