@@ -30,7 +30,7 @@ namespace LocalServer
 
 #region IServerMethods
 
-        public async void RunServer()
+        public void RunServer()
         {
             Console.WriteLine("Starting server...");
                     
@@ -70,24 +70,6 @@ namespace LocalServer
 
         private async void StartNotifyPlayers()
         {
-            // while (_serverSocket.IsBound)
-            // {
-            //     if (_clients.Count == 0)
-            //     {
-            //         continue;
-            //     }
-            //     
-            //     MessageInfo messageInfo = new MessageInfo(x: _currentGameState.CurrentNumber);
-            //
-            //     foreach (Client client in _clients.Values)
-            //     {
-            //         client.SendToThis(messageInfo);
-            //     }
-            //         
-            //     _currentGameState.CurrentNumber++;
-            //     await Task.Delay(1000 / ServerSettings.NotificationFrequencyPerSec);
-            // }
-
             await Task.Run(async () =>
             {
                 while (_serverSocket.IsBound)
@@ -96,8 +78,13 @@ namespace LocalServer
                     {
                         continue;
                     }
-                    
-                    var messageInfo = new MessageInfo(x: _currentGameState.CurrentNumber);
+
+                    var messageInfo = new MessageInfo()
+                    {
+                        Y = _currentGameState.CurrentNumber,
+                        X = _currentGameState.CurrentNumber,
+                        Z = _currentGameState.CurrentNumber
+                    };
             
                     foreach (Client client in _clients.Values)
                     {
@@ -108,6 +95,26 @@ namespace LocalServer
                     
                     _currentGameState.CurrentNumber++;
                     await Task.Delay(1000 / ServerSettings.NotificationFrequencyPerSec);
+                }
+            });
+        }
+
+        private async void StartReceiving(Client client)
+        {
+            await Task.Run(() =>
+            {
+                while (client.Socket.Connected)
+                {
+                    if (client.Socket.Available <= 0)
+                    {
+                        continue;
+                    }
+
+                    MessageInfo messageInfo = client.ReceiveFromThis();
+                    ChangeGameState(messageInfo);
+
+                    // Console.WriteLine(
+                    // $"[{DateTime.Now.ToString(CultureInfo.CurrentCulture)}] {client.ID}: {client.ReceiveFromThis()}");
                 }
             });
         }
@@ -123,23 +130,7 @@ namespace LocalServer
             StartReceiving(newClient);
             return newClient;
         }
-
-        private async void StartReceiving(Client client)
-        {
-            await Task.Run(() =>
-            {
-                while (client.Socket.Connected)
-                {
-                    if (client.Socket.Available <= 0)
-                    {
-                        continue;
-                    }
-                    Console.WriteLine(
-                        $"[{DateTime.Now.ToString(CultureInfo.CurrentCulture)}] {client.ID}: {client.ReceiveFromThis().ToString()}");
-                }
-            });
-        }
-
+        
         private void DisconnectClient(int id)
         {
             Client client = _clients[id];
@@ -150,7 +141,7 @@ namespace LocalServer
             _clients.Remove(id);
         }
 
-        private void ChangeGameState()
+        private void ChangeGameState( MessageInfo messageInfo)
         {
             
         }

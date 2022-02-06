@@ -15,7 +15,7 @@ namespace ChaosMission.Networking
         private readonly ISerializer<MessageInfo> _serializer = new ProtobufSerializer<MessageInfo>();
    
         public Action<MessageInfo> ServerMessageReceived;
-        public MessageInfo SendableMessage { private get; set; }
+        public MessageInfo SendableMessage { get; set; } = new MessageInfo();
         
         public ServerConnection()
         {
@@ -27,6 +27,7 @@ namespace ChaosMission.Networking
         {
             _clientSocket.Connect(ipAddress, port);
             StartReceiving(_cancellationTokenSource.Token);
+            StartSending(_cancellationTokenSource.Token);
         }
         
         
@@ -55,7 +56,7 @@ namespace ChaosMission.Networking
             }
         }
         
-        public void SendMessage(MessageInfo messageInfo)
+        private void SendMessage(MessageInfo messageInfo)
         {
             byte[] message = _serializer.Serialize(messageInfo);
             
@@ -64,6 +65,7 @@ namespace ChaosMission.Networking
                 _clientSocket.Send(message);
             }
         }
+       
         private MessageInfo ReceiveMessage()
         {
             byte[] usefulData = new byte[_clientSocket.Available];

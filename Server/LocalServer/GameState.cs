@@ -1,13 +1,20 @@
+using System.Collections.Generic;
+
 namespace LocalServer
 {
     public class GameState
     {
-        public int CurrentNumber { get; set; }
+        private List<Player> _players = new List<Player>();
 
         public GameState()
         {
-            CurrentNumber = 0;
+            
         }
 
+
+        public void AddPlayer(Player player)
+        {
+            _players.Add(player);
+        }
     }
 }

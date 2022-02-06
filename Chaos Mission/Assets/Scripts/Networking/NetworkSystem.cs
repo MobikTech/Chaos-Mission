@@ -1,15 +1,18 @@
 using System;
-using System.Globalization;
+using System.Collections;
 using System.Net;
 using Serializer;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace ChaosMission.Networking
 {
     public class NetworkSystem : MonoBehaviour, IDisposable
     {
-        [SerializeField] private GameObject _player;
+        private const string PlayerTag = "Player"; 
+        private const int Level1SceneIndex = 1; 
+        
+        private GameObject _player;
         private ServerConnection _serverConnection;
         
         private void Awake()
@@ -20,11 +23,13 @@ namespace ChaosMission.Networking
 
         private void Update()
         {
-            UpdateMessage();
+            if (_player != null)
+            {
+                UpdateMessage();
+            }
         }
 
         private void OnDestroy() => Dispose();
-
         
         public void TryConnectToAddress(string serverAddress)
         {
@@ -32,6 +37,10 @@ namespace ChaosMission.Networking
             {
                 SplitAddress(serverAddress, out IPAddress ipAddress, out int port);
                 _serverConnection.ConnectToServer(ipAddress, port);
+
+                SceneManager.LoadScene(Level1SceneIndex);
+                
+                StartCoroutine(SetPlayerWhenSceneLoaded(Level1SceneIndex));
             }
             catch (Exception e)
             {
@@ -40,9 +49,19 @@ namespace ChaosMission.Networking
             }
         }
 
+        private IEnumerator SetPlayerWhenSceneLoaded(int sceneBuildIndex)
+        {
+            while (SceneManager.GetActiveScene().buildIndex != sceneBuildIndex)
+            {
+                yield return null;
+            }
+            
+            _player = GameObject.FindWithTag(PlayerTag);
+        }
+
         private void OnReceivedMessage(MessageInfo messageInfo)
         {
-            Debug.Log($"[{DateTime.Now.ToString(CultureInfo.InvariantCulture)}]: {messageInfo}");
+            // Debug.Log($"[{DateTime.Now.ToString(CultureInfo.InvariantCulture)}]: {messageInfo}");
         }
         
         private void SplitAddress(string address, out IPAddress ipAddress, out int port)
@@ -54,9 +73,12 @@ namespace ChaosMission.Networking
 
         private void UpdateMessage()
         {
+            var position = _player.transform.position;
             _serverConnection.SendableMessage = new MessageInfo()
             {
-                X = _player.transform.position.x
+                X = position.x,
+                Y = position.y,
+                Z = position.z
             };
         }
 

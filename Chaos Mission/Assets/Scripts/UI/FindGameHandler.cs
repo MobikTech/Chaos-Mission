@@ -1,7 +1,6 @@
 using ChaosMission.Networking;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace ChaosMission.UI
 {
@@ -17,8 +16,7 @@ namespace ChaosMission.UI
             string connectionAddress = _inputField.text.Length <= 0 ? DefaultAddress : _inputField.text;
             
             _networkSystem.TryConnectToAddress(connectionAddress);
-           
-            SceneManager.LoadScene(sceneBuildIndex: 1);
+
         }
     }
 }

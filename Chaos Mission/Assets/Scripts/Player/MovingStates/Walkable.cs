@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ChaosMission.Input;
 using ChaosMission.Settings.PlayerMoving;
@@ -34,6 +35,7 @@ namespace ChaosMission.Player.MovingStates
 
         void IHandleableByInput.OnEnable()
         {
+      
             _inputHandler.EnableAction(InputActions.Moving);
             _inputHandler.AddHandler(InputActions.Moving, OnWalking);
         }
