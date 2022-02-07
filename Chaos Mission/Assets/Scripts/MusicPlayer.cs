@@ -42,17 +42,24 @@ namespace ChaosMission
         {
             if (next.buildIndex == 0)
             {
-                _currentPlayList = new List<Track>(_menuMusics);
+                SetPlayList(_menuMusics);
             }
             else
             {
-                _currentPlayList = new List<Track>(_levelMusics);
+                SetPlayList(_levelMusics);
             }
         }
 
-        void Update()
+        private void SetPlayList(Track[] tracks)
         {
-            if (_currentTrack.source.isPlaying)
+            _currentPlayList = new List<Track>(tracks);
+            PlayRandomTrack(_currentPlayList);
+        }
+
+        private void Update()
+        {
+            if (_currentTrack == null) return;
+            if (!_currentTrack.source.isPlaying)
                 PlayRandomTrack(_currentPlayList);
         }
     }
