@@ -3,39 +3,36 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
-namespace ChaosMission
+namespace ChaosMission.Audio
 {
     public class MusicPlayer : MonoBehaviour
     {
         [SerializeField] private Track[] _menuMusics;
         [SerializeField] private Track[] _levelMusics;
+        
         private List<Track> _currentPlayList;
-        private Track _currentTrack;
+
+        private AudioSource _audioSource;
         
         private void Awake()
         {
-            InitializeMusics(_menuMusics);
-            InitializeMusics(_levelMusics);
+            _audioSource = GetComponent<AudioSource>();
             SceneManager.activeSceneChanged += ChangedActiveScene;
+            
         }
         
 
-        private void InitializeMusics(Track[] musics)
+        private void SetTrack(Track track)
         {
-            foreach (var music in musics)
-            {
-                music.source = gameObject.AddComponent<AudioSource>();
-
-                music.source.clip = music.clip;
-                music.source.pitch = music.pitch;
-                music.source.volume = music.volume;
-            }
+            _audioSource.clip = track.Clip;
+            _audioSource.pitch = track.Pitch;
+            _audioSource.volume = track.Volume;
         }
 
         private void PlayRandomTrack(IList<Track> tracks)
         {
-            _currentTrack = tracks[Random.Range(0, tracks.Count)];
-            _currentTrack.source.Play();
+            SetTrack(tracks[Random.Range(0, tracks.Count)]);
+            _audioSource.Play();
         }
         
         private void ChangedActiveScene(Scene current, Scene next)
@@ -53,13 +50,14 @@ namespace ChaosMission
         private void SetPlayList(Track[] tracks)
         {
             _currentPlayList = new List<Track>(tracks);
+            _audioSource.Stop();
             PlayRandomTrack(_currentPlayList);
         }
 
         private void Update()
         {
-            if (_currentTrack == null) return;
-            if (!_currentTrack.source.isPlaying)
+            if(_audioSource.clip == null) return;
+            if (!_audioSource.isPlaying)
                 PlayRandomTrack(_currentPlayList);
         }
     }
