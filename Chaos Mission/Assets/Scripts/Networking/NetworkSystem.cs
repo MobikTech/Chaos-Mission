@@ -23,10 +23,7 @@ namespace ChaosMission.Networking
 
         private void Update()
         {
-            if (_player != null)
-            {
-                UpdateMessage();
-            }
+            UpdateMessage();
         }
 
         private void OnDestroy() => Dispose();
@@ -73,6 +70,11 @@ namespace ChaosMission.Networking
 
         private void UpdateMessage()
         {
+            if (_player == null)
+            {
+                return;
+            }
+            
             var position = _player.transform.position;
             _serverConnection.SendableMessage = new MessageInfo()
             {
