@@ -9680,6 +9680,7 @@ GameObject:
   - component: {fileID: 9210857160915351509}
   - component: {fileID: 7851906410231597126}
   - component: {fileID: 1586192290799495993}
+  - component: {fileID: 8719553015072660729}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -9740,8 +9741,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1277134925
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
@@ -9829,3 +9830,16 @@ MonoBehaviour:
   _movingSettings: {fileID: 11400000, guid: feaf5c3a6a07cc74dbe23c73682d8f29, type: 2}
   _collider2D: {fileID: 9210857160915351509}
   _moveController: {fileID: 7851906410231597126}
+--- !u!114 &8719553015072660729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9055431775295644128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3eea20cec573c244a5e3eb66ab279a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxhelth: 200
