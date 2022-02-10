@@ -1,7 +1,7 @@
 using ChaosMission.Settings.PlayerMoving;
 using UnityEngine;
 
-namespace ChaosMission.Player
+namespace ChaosMission.Player.Gizmos
 {
     // [RequireComponent(typeof(Collider2D), typeof(MoveController))]
     public class JumpingCheckerGizmos : MonoBehaviour
@@ -29,8 +29,8 @@ namespace ChaosMission.Player
                 colliderSize.y * _movingSettings.GroundCheckerHeightPercent,
                 0.01f);
         
-            Gizmos.color = _moveController.MovingStates[MovingState.Jumping].IsActive ? Color.red : Color.green;
-            Gizmos.DrawWireCube(gizmoSquareCenter, gizmoSquareSize);
+            UnityEngine.Gizmos.color = _moveController.MovingStates[MovingState.Jumping].IsActive ? Color.red : Color.green;
+            UnityEngine.Gizmos.DrawWireCube(gizmoSquareCenter, gizmoSquareSize);
 // #endif
         }
     }
