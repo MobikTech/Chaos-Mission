@@ -4,6 +4,7 @@ namespace ChaosMission.Player
     {
         Walking,
         Jumping,
-        Climbing
+        Climbing,
+        Laddering
     }
 }

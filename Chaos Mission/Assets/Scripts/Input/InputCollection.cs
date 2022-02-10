@@ -73,42 +73,18 @@ namespace ChaosMission.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Laddering"",
+                    ""type"": ""Value"",
+                    ""id"": ""e69baba7-a65f-461a-bff0-bfafcf962695"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": ""AD"",
-                    ""id"": ""9644f0ec-12e0-49d1-aef4-ab2d86ef79e2"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Moving"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""Negative"",
-                    ""id"": ""b6490bed-cf14-4234-a490-f2941b478bf7"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""MouseKeyboard"",
-                    ""action"": ""Moving"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Positive"",
-                    ""id"": ""4d8540d3-b9f6-45c5-b373-5a60b9192aaa"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""MouseKeyboard"",
-                    ""action"": ""Moving"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
                 {
                     ""name"": """",
                     ""id"": ""2e6d3588-340c-4091-b093-42c8f8a0fce4"",
@@ -152,6 +128,94 @@ namespace ChaosMission.Input
                     ""action"": ""ClimbingJump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""AD"",
+                    ""id"": ""9644f0ec-12e0-49d1-aef4-ab2d86ef79e2"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Moving"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Negative"",
+                    ""id"": ""b6490bed-cf14-4234-a490-f2941b478bf7"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MouseKeyboard"",
+                    ""action"": ""Moving"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Positive"",
+                    ""id"": ""4d8540d3-b9f6-45c5-b373-5a60b9192aaa"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MouseKeyboard"",
+                    ""action"": ""Moving"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""a65582c8-e828-4aaf-9ca8-e7374c40daaa"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Laddering"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""6f63fd10-da21-436b-a9ad-70ea77557d07"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Laddering"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""5b433fe2-f862-4f62-96c1-e6161b4e19d1"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Laddering"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""64ae8d2e-f3a0-4e28-b214-616486fe6040"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Laddering"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""a88f6401-b01c-4d7f-b535-3ffde01b12ca"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Laddering"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -193,6 +257,7 @@ namespace ChaosMission.Input
             m_Player_Jumping = m_Player.FindAction("Jumping", throwIfNotFound: true);
             m_Player_ClimbingDownhill = m_Player.FindAction("ClimbingDownhill", throwIfNotFound: true);
             m_Player_ClimbingJump = m_Player.FindAction("ClimbingJump", throwIfNotFound: true);
+            m_Player_Laddering = m_Player.FindAction("Laddering", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -257,6 +322,7 @@ namespace ChaosMission.Input
         private readonly InputAction m_Player_Jumping;
         private readonly InputAction m_Player_ClimbingDownhill;
         private readonly InputAction m_Player_ClimbingJump;
+        private readonly InputAction m_Player_Laddering;
         public struct PlayerActions
         {
             private @InputCollection m_Wrapper;
@@ -266,6 +332,7 @@ namespace ChaosMission.Input
             public InputAction @Jumping => m_Wrapper.m_Player_Jumping;
             public InputAction @ClimbingDownhill => m_Wrapper.m_Player_ClimbingDownhill;
             public InputAction @ClimbingJump => m_Wrapper.m_Player_ClimbingJump;
+            public InputAction @Laddering => m_Wrapper.m_Player_Laddering;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -290,6 +357,9 @@ namespace ChaosMission.Input
                     @ClimbingJump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClimbingJump;
                     @ClimbingJump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClimbingJump;
                     @ClimbingJump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClimbingJump;
+                    @Laddering.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLaddering;
+                    @Laddering.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLaddering;
+                    @Laddering.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLaddering;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -309,6 +379,9 @@ namespace ChaosMission.Input
                     @ClimbingJump.started += instance.OnClimbingJump;
                     @ClimbingJump.performed += instance.OnClimbingJump;
                     @ClimbingJump.canceled += instance.OnClimbingJump;
+                    @Laddering.started += instance.OnLaddering;
+                    @Laddering.performed += instance.OnLaddering;
+                    @Laddering.canceled += instance.OnLaddering;
                 }
             }
         }
@@ -338,6 +411,7 @@ namespace ChaosMission.Input
             void OnJumping(InputAction.CallbackContext context);
             void OnClimbingDownhill(InputAction.CallbackContext context);
             void OnClimbingJump(InputAction.CallbackContext context);
+            void OnLaddering(InputAction.CallbackContext context);
         }
     }
 }

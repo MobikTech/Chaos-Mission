@@ -10,6 +10,7 @@ namespace ChaosMission.Input
         Shooting,
         ClimbingJump,
         ClimbingDownhill,
+        Laddering,
     }
     
     public sealed class InputHandler
@@ -30,6 +31,7 @@ namespace ChaosMission.Input
                 InputActions.Shooting => _inputCollection.Player.Shooting,
                 InputActions.ClimbingJump => _inputCollection.Player.ClimbingJump,
                 InputActions.ClimbingDownhill => _inputCollection.Player.ClimbingDownhill,
+                InputActions.Laddering => _inputCollection.Player.Laddering,
                 _ => throw new ArgumentOutOfRangeException(nameof(action), action, null)
             };
         }

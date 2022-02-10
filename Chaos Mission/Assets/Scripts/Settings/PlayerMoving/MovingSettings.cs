@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ChaosMission.Settings.PlayerMoving
 {
     [CreateAssetMenu(fileName = "MovingSettings", menuName = "CustomSettings/MovingSettings", order = 0)]
-    public sealed class MovingSettings : ScriptableObject, IWalkingSettings, IJumpingSettings, IClimbingSettings
+    public sealed class MovingSettings : ScriptableObject, IWalkingSettings, IJumpingSettings, IClimbingSettings, ILadderingSettings
     {
         [Header("Moving")]
         [SerializeField] private float _maxMoveSpeed = 6f;
@@ -21,6 +22,13 @@ namespace ChaosMission.Settings.PlayerMoving
         [SerializeField] private float _slippingFactor = 1.2f;
         [SerializeField] private float _distance = 0.02f;
         
+        [Header("Laddering")]
+        [SerializeField] private LayerMask _ladderLayerMask;
+        [SerializeField] private float _ladderDistance = 13f;
+        [SerializeField] private float _ladderAccelerationFactor= 1.2f;
+        [SerializeField] private float _ladderMaxSpeed = 0.02f;
+        [SerializeField] private float _ladderFallingGravity = 2f;
+        
         
         public float MAXMoveSpeed => _maxMoveSpeed;
         public float AccelerationFactor => _accelerationFactor;
@@ -37,5 +45,11 @@ namespace ChaosMission.Settings.PlayerMoving
         public float SlippingFactor => _slippingFactor;
         public float Distance => _distance;
 
+        public LayerMask LadderLayerMask => _ladderLayerMask;
+        public float LadderDistance => _ladderDistance;
+        public float LadderAccelerationFactor => _ladderAccelerationFactor;
+        public float MAXLadderSpeed => _ladderMaxSpeed;
+
+        public float LadderFallingGravity => _ladderDistance;
     }
 }

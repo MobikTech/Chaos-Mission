@@ -34,12 +34,15 @@ namespace ChaosMission.Player
             Walkable walkable = new Walkable(transform, _inputHandler, _rigidbody2D, _movingSettings);
             Jumpable jumpable = new Jumpable(_inputHandler, _rigidbody2D, _collider2D, _movingSettings);
             Climbable climbable = new Climbable(_inputHandler, _rigidbody2D, _collider2D, _movingSettings);
+            Ladderable ladderable = new Ladderable(transform, _inputHandler, _rigidbody2D, _collider2D,
+                _movingSettings);
             
             MovingStates = new Dictionary<MovingState, IMovingState>
             {
                 {MovingState.Walking, walkable},
                 {MovingState.Jumping, jumpable},
-                {MovingState.Climbing, climbable}
+                {MovingState.Climbing, climbable},
+                {MovingState.Laddering, ladderable}
             };
 
             _handleableByInputStatesList = MovingStates.Values
@@ -50,8 +53,7 @@ namespace ChaosMission.Player
                 .OfType<IDisposable>()
                 .ToList();
         }
- 
-
+        
         private void OnEnable() => _handleableByInputStatesList.ForEach(state => state.OnEnable());
         private void OnDisable() =>_handleableByInputStatesList.ForEach(state => state.OnDisable());
         private void OnDestroy()
