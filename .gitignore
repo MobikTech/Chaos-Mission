@@ -42,4 +42,5 @@ sysinfo.txt
 *.log
 
 # User settings
+UserSettings/
 *.ini
