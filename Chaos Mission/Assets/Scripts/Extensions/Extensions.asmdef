@@ -1,5 +1,5 @@
 {
-    "name": "UnityExtensions",
+    "name": "Extensions",
     "rootNamespace": "ChaosMission",
     "references": [],
     "includePlatforms": [],

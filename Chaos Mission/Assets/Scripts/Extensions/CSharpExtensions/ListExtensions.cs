@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ChaosMission.Extensions
+namespace ChaosMission.Extensions.CSharpExtensions
 {
     public static class ListExtensions
     {

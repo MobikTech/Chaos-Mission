@@ -1,5 +1,6 @@
 ﻿using System;
 using ChaosMission.Extensions;
+using ChaosMission.Extensions.CSharpExtensions;
 using UnityEngine;
 
 namespace ChaosMission.Spawners

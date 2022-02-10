@@ -1,8 +1,8 @@
 using System;
 using System.Threading.Tasks;
+using ChaosMission.Extensions.UnityExtensions;
 using ChaosMission.Input;
 using ChaosMission.Settings.PlayerMoving;
-using ChaosMission.UnityExtensions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 

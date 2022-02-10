@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Threading.Tasks;
-using ChaosMission.UnityExtensions;
+using ChaosMission.Extensions.UnityExtensions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 

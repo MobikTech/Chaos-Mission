@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ChaosMission.UnityExtensions
+namespace ChaosMission.Extensions.UnityExtensions
 {
     public static class Collider2DExtensions
     {

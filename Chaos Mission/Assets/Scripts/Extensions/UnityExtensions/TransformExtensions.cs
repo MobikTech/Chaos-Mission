@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace ChaosMission.UnityExtensions
+namespace ChaosMission.Extensions.UnityExtensions
 {
     public enum Axes
     {
