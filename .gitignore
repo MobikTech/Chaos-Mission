@@ -40,3 +40,6 @@ sysinfo.txt
 
 # Logs
 *.log
+
+# User settings
+*.ini
