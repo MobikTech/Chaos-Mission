@@ -15,7 +15,7 @@ namespace ChaosMission.Player
         private InputHandler _inputHandler;
         private Rigidbody2D _rigidbody2D;
         private Collider2D _collider2D;
-        
+
         public Dictionary<MovingState, IMovingState> MovingStates { get; private set; }
         private List<IHandleableByInput> _handleableByInputStatesList;
         private List<IDisposable> _disposableStates;
@@ -33,7 +33,7 @@ namespace ChaosMission.Player
         {
             Walkable walkable = new Walkable(transform, _inputHandler, _rigidbody2D, _movingSettings);
             Jumpable jumpable = new Jumpable(_inputHandler, _rigidbody2D, _collider2D, _movingSettings);
-            Climbable climbable = new Climbable(_inputHandler, _rigidbody2D, _collider2D, _movingSettings);
+            // Climbable climbable = new Climbable(_inputHandler, _rigidbody2D, _collider2D, _movingSettings);
             Ladderable ladderable = new Ladderable(transform, _inputHandler, _rigidbody2D, _collider2D,
                 _movingSettings);
             
@@ -41,7 +41,7 @@ namespace ChaosMission.Player
             {
                 {MovingState.Walking, walkable},
                 {MovingState.Jumping, jumpable},
-                {MovingState.Climbing, climbable},
+                // {MovingState.Climbing, climbable},
                 {MovingState.Laddering, ladderable}
             };
 
