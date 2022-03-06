@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ChaosMission.GameSettings.PlayerMoving;
 using ChaosMission.Input;
 using ChaosMission.Player.MovingStates;
 using ChaosMission.Settings.PlayerMoving;

@@ -1,3 +1,4 @@
+using ChaosMission.GameSettings.PlayerMoving;
 using ChaosMission.Settings.PlayerMoving;
 using UnityEngine;
 

@@ -1,7 +1,7 @@
-using System.Collections.Generic;
+using ChaosMission.Settings.PlayerMoving;
 using UnityEngine;
 
-namespace ChaosMission.Settings.PlayerMoving
+namespace ChaosMission.GameSettings.PlayerMoving
 {
     [CreateAssetMenu(fileName = "MovingSettings", menuName = "CustomSettings/MovingSettings", order = 0)]
     public sealed class MovingSettings : ScriptableObject, IWalkingSettings, IJumpingSettings, IClimbingSettings, ILadderingSettings

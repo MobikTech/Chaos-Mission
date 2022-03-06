@@ -1,0 +1,17 @@
+{
+    "name": "Debug",
+    "rootNamespace": "ChaosMission",
+    "references": [
+        "GUID:5efbcadc49440e847bf309e0c5e8e791",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
