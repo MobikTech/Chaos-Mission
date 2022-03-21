@@ -9680,8 +9680,8 @@ GameObject:
   - component: {fileID: 9210857160915351509}
   - component: {fileID: 3208084341440877872}
   - component: {fileID: 7851906410231597126}
-  - component: {fileID: 8719553015072660729}
   - component: {fileID: 3870096673011295686}
+  - component: {fileID: 33964247}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -9835,20 +9835,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movingSettings: {fileID: 11400000, guid: feaf5c3a6a07cc74dbe23c73682d8f29, type: 2}
---- !u!114 &8719553015072660729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9055431775295644128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3eea20cec573c244a5e3eb66ab279a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHealth: 100
-  _healthBar: {fileID: 0}
 --- !u!114 &3870096673011295686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9861,7 +9847,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc01bb663a977c459feda2efaa39d53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 5060686818907218120, guid: 1f7a03b96f7ef014f8519ecb40e32cdd, type: 3}
+  _bulletPrefab: {fileID: 8350675431801207750, guid: 3e3fceb7698902a449e43fa6e8d03996, type: 3}
   _bulletsParent: {fileID: 0}
   _throwForce: 13
   _offset: 1
+--- !u!114 &33964247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9055431775295644128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e89a7fb9fc51438787f45b48eecbda5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
