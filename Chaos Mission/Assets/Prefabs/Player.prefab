@@ -9681,8 +9681,7 @@ GameObject:
   - component: {fileID: 3208084341440877872}
   - component: {fileID: 7851906410231597126}
   - component: {fileID: 8719553015072660729}
-  - component: {fileID: 3208084341440877873}
-  - component: {fileID: 3208084341440877875}
+  - component: {fileID: 3870096673011295686}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -9848,9 +9847,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3eea20cec573c244a5e3eb66ab279a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxhelth: 200
+  _maxHealth: 100
   _healthBar: {fileID: 0}
---- !u!114 &3208084341440877873
+--- !u!114 &3870096673011295686
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9859,22 +9858,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 9055431775295644128}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 370e7c1a11d753b488f45cfa9113641e, type: 3}
+  m_Script: {fileID: 11500000, guid: edc01bb663a977c459feda2efaa39d53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3208084341440877875
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9055431775295644128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82be69bd2e13432a8dd006f250615fd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _movingParticleSystems:
-  - {fileID: 502059382}
-  _jumpingParticleSystems:
-  - {fileID: 1833220442}
+  _bulletPrefab: {fileID: 5060686818907218120, guid: 1f7a03b96f7ef014f8519ecb40e32cdd, type: 3}
+  _bulletsParent: {fileID: 0}
+  _throwForce: 13
+  _offset: 1
