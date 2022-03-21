@@ -12,6 +12,7 @@ namespace ChaosMission.Shooting
         [SerializeField] private float _throwForce = 13f;
         [SerializeField] private float _offset = 1f;
 
+        private const float BulletZPosition = -1;
         private Camera _mainCamera;
         private InputAction _shootingAction;
 
@@ -62,6 +63,7 @@ namespace ChaosMission.Shooting
         private Throwable SpawnBullet(Vector3 direction)
         {
             Vector3 spawnPosition = GetBulletSpawnPosition(direction);
+            spawnPosition.z = BulletZPosition;
             GameObject bullet = Instantiate(_bulletPrefab, spawnPosition, Quaternion.identity, _bulletsParent);
             return bullet.GetComponent<Throwable>();
         }
