@@ -49,11 +49,14 @@ namespace ChaosMission.Player.Moving.States
             };
         }
 
-        public bool IsTriggered() => TouchesLadder();
+        public bool IsTriggered()
+        {
+            return TouchesLadder();
+            // && Keyboard.current.wKey.isPressed;
+        }
 
         public void EnableState()
         {
-            // _inputHandler.DisableAllActions();
             _ladderingAction.Enable();
             StateStarted?.Invoke();
         }
@@ -85,6 +88,5 @@ namespace ChaosMission.Player.Moving.States
         }
 
         private void ResetVelocity() => _rigidbody2D.velocity = Vector2.zero;
-
     }
 }

@@ -1,5 +1,6 @@
 #nullable enable
 using System;
+using ChaosMission.Common;
 using ChaosMission.GameSettings.PlayerMoving;
 using ChaosMission.Input.ActionsMaps;
 using ChaosMission.Input.Handlers;
@@ -32,7 +33,6 @@ namespace ChaosMission.Player.Moving.States
 
         public void EnableState()
         {
-            // _inputHandler.DisableAllActions();
             _airMovingAction.Enable();
             StateStarted?.Invoke();
         }
@@ -54,12 +54,20 @@ namespace ChaosMission.Player.Moving.States
             
             float actionValue = _airMovingAction.ReadValue<float>();
 
-            if (actionValue == 0)
+            if (actionValue == 0f && _rigidbody2D.velocity.x != 0)
             {
-                if (_rigidbody2D.velocity != Vector2.zero)
-                {
-                    ResetVelocity();
-                }
+                ResetVelocity();
+                return;
+            }
+
+            if (actionValue == 0f)
+            {
+                return;
+            }
+
+            if (DirectionChanged(actionValue))
+            {
+                ResetVelocity();
                 return;
             }
             
@@ -73,10 +81,9 @@ namespace ChaosMission.Player.Moving.States
                 currentVelocity.y);
         }
 
-        private void ResetVelocity()
-        {
-            _rigidbody2D.velocity = new Vector2(0f, _rigidbody2D.velocity.y);
-            Debug.Log("RESET");
-        }
+        private bool DirectionChanged(float actionValue) =>
+            CustomMath.HaveDifferentSigns(actionValue, _rigidbody2D.velocity.x);
+        
+        private void ResetVelocity() => _rigidbody2D.velocity = new Vector2(0f, _rigidbody2D.velocity.y);
     }
 }

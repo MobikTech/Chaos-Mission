@@ -24,16 +24,5 @@ namespace ChaosMission.Input
                 GetByType(actionType).Disable();
             }
         }
-        
-        // public TValue ReadCurrentValue<TValue>(TActions actionType) 
-        //     where TValue : struct =>
-        //     GetByType(actionType).ReadValue<TValue>();
-        //
-        //
-        // public void AddHandler(TActions actionType, Action<InputAction.CallbackContext> handler) =>
-        //     GetByType(actionType).performed += handler;
-        //
-        // public void RemoveHandler(TActions actionType, Action<InputAction.CallbackContext> handler) =>
-        //     GetByType(actionType).performed -= handler;
     }
 }

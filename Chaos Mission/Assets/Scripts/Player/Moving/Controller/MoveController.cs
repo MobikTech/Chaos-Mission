@@ -37,8 +37,8 @@ namespace ChaosMission.Player.Moving.Controller
 
         private void FixedUpdate()
         {
-            TryChangeState();
             _currentFixedUpdatable?.FixedUpdate();
+            TryChangeState();
         }
         
         private void InitStates()
@@ -80,7 +80,7 @@ namespace ChaosMission.Player.Moving.Controller
                     if (_currentState != state)
                     {
                         ApplyState(state);
-                        Debug.Log($"State - {state.Name}");
+                        // Debug.Log($"State - {state.Name}");
                     }
                     break;
                 }
