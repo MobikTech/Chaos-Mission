@@ -1,10 +1,11 @@
 using System;
 using ChaosMission.Input.ActionsMaps;
+using ChaosMission.Input.Core;
 using UnityEngine.InputSystem;
 
 namespace ChaosMission.Input.Handlers
 {
-    public sealed class PlayerMovingHandler : ActionsMapHandler<PlayerMovingActions>
+    public sealed class PlayerMovingHandler : ActionsMapHandler<PlayerMovingActions, InputCollection>
     {
         public override InputAction GetByType(PlayerMovingActions actionType)
         {

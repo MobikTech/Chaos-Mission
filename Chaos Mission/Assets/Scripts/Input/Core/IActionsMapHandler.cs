@@ -1,7 +1,7 @@
 using System;
 using UnityEngine.InputSystem;
 
-namespace ChaosMission.Input
+namespace ChaosMission.Input.Core
 {
     public interface IActionsMapHandler<in TActions> where TActions : Enum
     {
