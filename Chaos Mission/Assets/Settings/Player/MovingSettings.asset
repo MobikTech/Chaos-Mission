@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MovingSettings
   m_EditorClassIdentifier: 
   _maxMoveSpeed: 6
-  _accelerationFactor: 0.304
+  _accelerationFactor: 0.411
   _jumpForce: 13
   _groundLayerMask:
     serializedVersion: 2
@@ -31,5 +31,5 @@ MonoBehaviour:
     m_Bits: 256
   _ladderDistance: 2
   _ladderAccelerationFactor: 1
-  _ladderMaxSpeed: 6
+  _ladderMaxSpeed: 3
   _ladderFallingGravity: 2

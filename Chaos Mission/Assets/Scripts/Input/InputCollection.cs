@@ -30,7 +30,7 @@ namespace ChaosMission.Input
             ""id"": ""cec8b14f-6e9b-4aea-8001-8faf46d13359"",
             ""actions"": [
                 {
-                    ""name"": ""Moving"",
+                    ""name"": ""Walking"",
                     ""type"": ""Value"",
                     ""id"": ""9c4b376f-2b00-4a2c-8c24-5ed2694609f1"",
                     ""expectedControlType"": ""Axis"",
@@ -51,24 +51,6 @@ namespace ChaosMission.Input
                     ""name"": ""Jumping"",
                     ""type"": ""Button"",
                     ""id"": ""b0470950-05a3-4cb6-820e-c44802b77cf6"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ClimbingDownhill"",
-                    ""type"": ""Button"",
-                    ""id"": ""1d34af8f-ff1c-4b12-8e14-c5db99a750fb"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ClimbingJump"",
-                    ""type"": ""Button"",
-                    ""id"": ""8089b770-c131-4c05-a9fb-795d06c48aa1"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -108,35 +90,13 @@ namespace ChaosMission.Input
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""b50c3473-51d6-4d16-a8dd-12a19b0aefc0"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": ""Press"",
-                    ""processors"": """",
-                    ""groups"": ""MouseKeyboard"",
-                    ""action"": ""ClimbingDownhill"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a89972db-fb18-4927-881d-2f2c09ed90b5"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""MouseKeyboard"",
-                    ""action"": ""ClimbingJump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
                     ""name"": ""AD"",
                     ""id"": ""9644f0ec-12e0-49d1-aef4-ab2d86ef79e2"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Moving"",
+                    ""action"": ""Walking"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -147,7 +107,7 @@ namespace ChaosMission.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MouseKeyboard"",
-                    ""action"": ""Moving"",
+                    ""action"": ""Walking"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -158,7 +118,7 @@ namespace ChaosMission.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MouseKeyboard"",
-                    ""action"": ""Moving"",
+                    ""action"": ""Walking"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -218,6 +178,182 @@ namespace ChaosMission.Input
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""PlayerMoving"",
+            ""id"": ""de5eee8e-2d8f-483d-9386-3fc28c2180ff"",
+            ""actions"": [
+                {
+                    ""name"": ""Walking"",
+                    ""type"": ""Value"",
+                    ""id"": ""9c1801dc-ea9a-461d-8e8e-5fd618d31488"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""AirMoving"",
+                    ""type"": ""Value"",
+                    ""id"": ""db3df115-07aa-4872-b713-cd058980117b"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Laddering"",
+                    ""type"": ""Value"",
+                    ""id"": ""850c202b-6821-4123-9760-4bb187c377e3"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Jumping"",
+                    ""type"": ""Button"",
+                    ""id"": ""80d2bf81-5520-43c7-8277-1d817291fe58"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""AD"",
+                    ""id"": ""c7678c84-f338-4fa7-84f7-a87a81a0ecf2"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walking"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""5a617b40-c7cd-4069-84eb-b471f9d5a79a"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MouseKeyboard"",
+                    ""action"": ""Walking"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""ba9793c8-4a4e-408f-8ea9-8055ede3071d"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MouseKeyboard"",
+                    ""action"": ""Walking"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""9e8efaf3-d323-435c-9bb8-6e444161f0ec"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Laddering"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""b2d65859-b872-457b-9c7a-4f3b588ac3d9"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MouseKeyboard"",
+                    ""action"": ""Laddering"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""cf23f207-17eb-4ac8-80ec-29f971ecea42"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MouseKeyboard"",
+                    ""action"": ""Laddering"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""31ff7eb5-c159-4f1e-8d4a-d9f0863cc6f9"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MouseKeyboard"",
+                    ""action"": ""Laddering"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""47a88ae9-1130-4314-a417-b4200c461e20"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MouseKeyboard"",
+                    ""action"": ""Laddering"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""88169840-0a1a-45ad-bcf1-3708e74d6586"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MouseKeyboard"",
+                    ""action"": ""Jumping"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""AD"",
+                    ""id"": ""371e594d-e474-45c3-8726-48d3984fcdd9"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AirMoving"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""c08ea053-79b5-4fd2-90ab-57ef42cc10aa"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MouseKeyboard"",
+                    ""action"": ""AirMoving"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""9980a36a-2a92-4c49-98f5-0167a2342ef2"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MouseKeyboard"",
+                    ""action"": ""AirMoving"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -252,12 +388,16 @@ namespace ChaosMission.Input
 }");
             // Player
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-            m_Player_Moving = m_Player.FindAction("Moving", throwIfNotFound: true);
+            m_Player_Walking = m_Player.FindAction("Walking", throwIfNotFound: true);
             m_Player_Shooting = m_Player.FindAction("Shooting", throwIfNotFound: true);
             m_Player_Jumping = m_Player.FindAction("Jumping", throwIfNotFound: true);
-            m_Player_ClimbingDownhill = m_Player.FindAction("ClimbingDownhill", throwIfNotFound: true);
-            m_Player_ClimbingJump = m_Player.FindAction("ClimbingJump", throwIfNotFound: true);
             m_Player_Laddering = m_Player.FindAction("Laddering", throwIfNotFound: true);
+            // PlayerMoving
+            m_PlayerMoving = asset.FindActionMap("PlayerMoving", throwIfNotFound: true);
+            m_PlayerMoving_Walking = m_PlayerMoving.FindAction("Walking", throwIfNotFound: true);
+            m_PlayerMoving_AirMoving = m_PlayerMoving.FindAction("AirMoving", throwIfNotFound: true);
+            m_PlayerMoving_Laddering = m_PlayerMoving.FindAction("Laddering", throwIfNotFound: true);
+            m_PlayerMoving_Jumping = m_PlayerMoving.FindAction("Jumping", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -317,21 +457,17 @@ namespace ChaosMission.Input
         // Player
         private readonly InputActionMap m_Player;
         private IPlayerActions m_PlayerActionsCallbackInterface;
-        private readonly InputAction m_Player_Moving;
+        private readonly InputAction m_Player_Walking;
         private readonly InputAction m_Player_Shooting;
         private readonly InputAction m_Player_Jumping;
-        private readonly InputAction m_Player_ClimbingDownhill;
-        private readonly InputAction m_Player_ClimbingJump;
         private readonly InputAction m_Player_Laddering;
         public struct PlayerActions
         {
             private @InputCollection m_Wrapper;
             public PlayerActions(@InputCollection wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Moving => m_Wrapper.m_Player_Moving;
+            public InputAction @Walking => m_Wrapper.m_Player_Walking;
             public InputAction @Shooting => m_Wrapper.m_Player_Shooting;
             public InputAction @Jumping => m_Wrapper.m_Player_Jumping;
-            public InputAction @ClimbingDownhill => m_Wrapper.m_Player_ClimbingDownhill;
-            public InputAction @ClimbingJump => m_Wrapper.m_Player_ClimbingJump;
             public InputAction @Laddering => m_Wrapper.m_Player_Laddering;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
@@ -342,21 +478,15 @@ namespace ChaosMission.Input
             {
                 if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
                 {
-                    @Moving.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoving;
-                    @Moving.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoving;
-                    @Moving.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoving;
+                    @Walking.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWalking;
+                    @Walking.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWalking;
+                    @Walking.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWalking;
                     @Shooting.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShooting;
                     @Shooting.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShooting;
                     @Shooting.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShooting;
                     @Jumping.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJumping;
                     @Jumping.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJumping;
                     @Jumping.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJumping;
-                    @ClimbingDownhill.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClimbingDownhill;
-                    @ClimbingDownhill.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClimbingDownhill;
-                    @ClimbingDownhill.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClimbingDownhill;
-                    @ClimbingJump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClimbingJump;
-                    @ClimbingJump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClimbingJump;
-                    @ClimbingJump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClimbingJump;
                     @Laddering.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLaddering;
                     @Laddering.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLaddering;
                     @Laddering.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLaddering;
@@ -364,21 +494,15 @@ namespace ChaosMission.Input
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
                 {
-                    @Moving.started += instance.OnMoving;
-                    @Moving.performed += instance.OnMoving;
-                    @Moving.canceled += instance.OnMoving;
+                    @Walking.started += instance.OnWalking;
+                    @Walking.performed += instance.OnWalking;
+                    @Walking.canceled += instance.OnWalking;
                     @Shooting.started += instance.OnShooting;
                     @Shooting.performed += instance.OnShooting;
                     @Shooting.canceled += instance.OnShooting;
                     @Jumping.started += instance.OnJumping;
                     @Jumping.performed += instance.OnJumping;
                     @Jumping.canceled += instance.OnJumping;
-                    @ClimbingDownhill.started += instance.OnClimbingDownhill;
-                    @ClimbingDownhill.performed += instance.OnClimbingDownhill;
-                    @ClimbingDownhill.canceled += instance.OnClimbingDownhill;
-                    @ClimbingJump.started += instance.OnClimbingJump;
-                    @ClimbingJump.performed += instance.OnClimbingJump;
-                    @ClimbingJump.canceled += instance.OnClimbingJump;
                     @Laddering.started += instance.OnLaddering;
                     @Laddering.performed += instance.OnLaddering;
                     @Laddering.canceled += instance.OnLaddering;
@@ -386,6 +510,63 @@ namespace ChaosMission.Input
             }
         }
         public PlayerActions @Player => new PlayerActions(this);
+
+        // PlayerMoving
+        private readonly InputActionMap m_PlayerMoving;
+        private IPlayerMovingActions m_PlayerMovingActionsCallbackInterface;
+        private readonly InputAction m_PlayerMoving_Walking;
+        private readonly InputAction m_PlayerMoving_AirMoving;
+        private readonly InputAction m_PlayerMoving_Laddering;
+        private readonly InputAction m_PlayerMoving_Jumping;
+        public struct PlayerMovingActions
+        {
+            private @InputCollection m_Wrapper;
+            public PlayerMovingActions(@InputCollection wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Walking => m_Wrapper.m_PlayerMoving_Walking;
+            public InputAction @AirMoving => m_Wrapper.m_PlayerMoving_AirMoving;
+            public InputAction @Laddering => m_Wrapper.m_PlayerMoving_Laddering;
+            public InputAction @Jumping => m_Wrapper.m_PlayerMoving_Jumping;
+            public InputActionMap Get() { return m_Wrapper.m_PlayerMoving; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(PlayerMovingActions set) { return set.Get(); }
+            public void SetCallbacks(IPlayerMovingActions instance)
+            {
+                if (m_Wrapper.m_PlayerMovingActionsCallbackInterface != null)
+                {
+                    @Walking.started -= m_Wrapper.m_PlayerMovingActionsCallbackInterface.OnWalking;
+                    @Walking.performed -= m_Wrapper.m_PlayerMovingActionsCallbackInterface.OnWalking;
+                    @Walking.canceled -= m_Wrapper.m_PlayerMovingActionsCallbackInterface.OnWalking;
+                    @AirMoving.started -= m_Wrapper.m_PlayerMovingActionsCallbackInterface.OnAirMoving;
+                    @AirMoving.performed -= m_Wrapper.m_PlayerMovingActionsCallbackInterface.OnAirMoving;
+                    @AirMoving.canceled -= m_Wrapper.m_PlayerMovingActionsCallbackInterface.OnAirMoving;
+                    @Laddering.started -= m_Wrapper.m_PlayerMovingActionsCallbackInterface.OnLaddering;
+                    @Laddering.performed -= m_Wrapper.m_PlayerMovingActionsCallbackInterface.OnLaddering;
+                    @Laddering.canceled -= m_Wrapper.m_PlayerMovingActionsCallbackInterface.OnLaddering;
+                    @Jumping.started -= m_Wrapper.m_PlayerMovingActionsCallbackInterface.OnJumping;
+                    @Jumping.performed -= m_Wrapper.m_PlayerMovingActionsCallbackInterface.OnJumping;
+                    @Jumping.canceled -= m_Wrapper.m_PlayerMovingActionsCallbackInterface.OnJumping;
+                }
+                m_Wrapper.m_PlayerMovingActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @Walking.started += instance.OnWalking;
+                    @Walking.performed += instance.OnWalking;
+                    @Walking.canceled += instance.OnWalking;
+                    @AirMoving.started += instance.OnAirMoving;
+                    @AirMoving.performed += instance.OnAirMoving;
+                    @AirMoving.canceled += instance.OnAirMoving;
+                    @Laddering.started += instance.OnLaddering;
+                    @Laddering.performed += instance.OnLaddering;
+                    @Laddering.canceled += instance.OnLaddering;
+                    @Jumping.started += instance.OnJumping;
+                    @Jumping.performed += instance.OnJumping;
+                    @Jumping.canceled += instance.OnJumping;
+                }
+            }
+        }
+        public PlayerMovingActions @PlayerMoving => new PlayerMovingActions(this);
         private int m_MouseKeyboardSchemeIndex = -1;
         public InputControlScheme MouseKeyboardScheme
         {
@@ -406,12 +587,17 @@ namespace ChaosMission.Input
         }
         public interface IPlayerActions
         {
-            void OnMoving(InputAction.CallbackContext context);
+            void OnWalking(InputAction.CallbackContext context);
             void OnShooting(InputAction.CallbackContext context);
             void OnJumping(InputAction.CallbackContext context);
-            void OnClimbingDownhill(InputAction.CallbackContext context);
-            void OnClimbingJump(InputAction.CallbackContext context);
             void OnLaddering(InputAction.CallbackContext context);
+        }
+        public interface IPlayerMovingActions
+        {
+            void OnWalking(InputAction.CallbackContext context);
+            void OnAirMoving(InputAction.CallbackContext context);
+            void OnLaddering(InputAction.CallbackContext context);
+            void OnJumping(InputAction.CallbackContext context);
         }
     }
 }

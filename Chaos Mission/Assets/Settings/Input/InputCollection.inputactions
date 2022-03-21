@@ -6,7 +6,7 @@
             "id": "cec8b14f-6e9b-4aea-8001-8faf46d13359",
             "actions": [
                 {
-                    "name": "Moving",
+                    "name": "Walking",
                     "type": "Value",
                     "id": "9c4b376f-2b00-4a2c-8c24-5ed2694609f1",
                     "expectedControlType": "Axis",
@@ -27,24 +27,6 @@
                     "name": "Jumping",
                     "type": "Button",
                     "id": "b0470950-05a3-4cb6-820e-c44802b77cf6",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ClimbingDownhill",
-                    "type": "Button",
-                    "id": "1d34af8f-ff1c-4b12-8e14-c5db99a750fb",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ClimbingJump",
-                    "type": "Button",
-                    "id": "8089b770-c131-4c05-a9fb-795d06c48aa1",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -84,35 +66,13 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "b50c3473-51d6-4d16-a8dd-12a19b0aefc0",
-                    "path": "<Keyboard>/s",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": "MouseKeyboard",
-                    "action": "ClimbingDownhill",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a89972db-fb18-4927-881d-2f2c09ed90b5",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "MouseKeyboard",
-                    "action": "ClimbingJump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
                     "name": "AD",
                     "id": "9644f0ec-12e0-49d1-aef4-ab2d86ef79e2",
                     "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Moving",
+                    "action": "Walking",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -123,7 +83,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "MouseKeyboard",
-                    "action": "Moving",
+                    "action": "Walking",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -134,7 +94,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "MouseKeyboard",
-                    "action": "Moving",
+                    "action": "Walking",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -190,6 +150,182 @@
                     "processors": "",
                     "groups": "",
                     "action": "Laddering",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "PlayerMoving",
+            "id": "de5eee8e-2d8f-483d-9386-3fc28c2180ff",
+            "actions": [
+                {
+                    "name": "Walking",
+                    "type": "Value",
+                    "id": "9c1801dc-ea9a-461d-8e8e-5fd618d31488",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "AirMoving",
+                    "type": "Value",
+                    "id": "db3df115-07aa-4872-b713-cd058980117b",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Laddering",
+                    "type": "Value",
+                    "id": "850c202b-6821-4123-9760-4bb187c377e3",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Jumping",
+                    "type": "Button",
+                    "id": "80d2bf81-5520-43c7-8277-1d817291fe58",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "AD",
+                    "id": "c7678c84-f338-4fa7-84f7-a87a81a0ecf2",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Walking",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "5a617b40-c7cd-4069-84eb-b471f9d5a79a",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MouseKeyboard",
+                    "action": "Walking",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "ba9793c8-4a4e-408f-8ea9-8055ede3071d",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MouseKeyboard",
+                    "action": "Walking",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "9e8efaf3-d323-435c-9bb8-6e444161f0ec",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Laddering",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "b2d65859-b872-457b-9c7a-4f3b588ac3d9",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MouseKeyboard",
+                    "action": "Laddering",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "cf23f207-17eb-4ac8-80ec-29f971ecea42",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MouseKeyboard",
+                    "action": "Laddering",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "31ff7eb5-c159-4f1e-8d4a-d9f0863cc6f9",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MouseKeyboard",
+                    "action": "Laddering",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "47a88ae9-1130-4314-a417-b4200c461e20",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MouseKeyboard",
+                    "action": "Laddering",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "88169840-0a1a-45ad-bcf1-3708e74d6586",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MouseKeyboard",
+                    "action": "Jumping",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "AD",
+                    "id": "371e594d-e474-45c3-8726-48d3984fcdd9",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AirMoving",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "c08ea053-79b5-4fd2-90ab-57ef42cc10aa",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MouseKeyboard",
+                    "action": "AirMoving",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "9980a36a-2a92-4c49-98f5-0167a2342ef2",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MouseKeyboard",
+                    "action": "AirMoving",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }
