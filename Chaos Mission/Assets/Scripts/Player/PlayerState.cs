@@ -1,16 +1,17 @@
+using ChaosMission.Health;
 using UnityEngine;
 
 namespace ChaosMission.Player
 {
     public class PlayerState : MonoBehaviour
     {
-        private Health _health;
-        [SerializeField] private int _maxhelth;
+        private Health.Health _health;
+        [SerializeField] private int _maxHealth;
         [SerializeField] private HealthBar _healthBar;
 
         private void Awake()
         {
-            _health = new Health(_maxhelth);
+            _health = new Health.Health(_maxHealth);
             _health.Die += () =>
             {
                 Destroy(gameObject);

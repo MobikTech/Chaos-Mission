@@ -1,11 +1,11 @@
 using System.Collections;
 using UnityEngine;
 
-namespace ChaosMission
+namespace ChaosMission.Shooting
 {
     public sealed class SelfDestroying : MonoBehaviour
     {
-        [SerializeField] private float lifeTime = 5f;
+        [SerializeField] private float _lifeTime = 5f;
 
         private void Start()
         {
@@ -14,7 +14,7 @@ namespace ChaosMission
         
         private IEnumerator Destroying()
         {
-            yield return new WaitForSeconds(lifeTime);
+            yield return new WaitForSeconds(_lifeTime);
             Destroy(gameObject);
         }
     }

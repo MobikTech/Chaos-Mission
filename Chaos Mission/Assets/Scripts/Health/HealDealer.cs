@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ChaosMission
+namespace ChaosMission.Health
 {
     public class HealDealer: MonoBehaviour
     {

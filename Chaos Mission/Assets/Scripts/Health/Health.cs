@@ -1,6 +1,6 @@
 using System;
 
-namespace ChaosMission
+namespace ChaosMission.Health
 {
     public class Health
     {

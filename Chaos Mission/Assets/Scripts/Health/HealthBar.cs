@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ChaosMission
+namespace ChaosMission.Health
 {
     public class HealthBar : MonoBehaviour
     {

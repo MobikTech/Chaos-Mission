@@ -1,9 +1,9 @@
 using UnityEngine;
 
-namespace ChaosMission
+namespace ChaosMission.Shooting
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class Throwable: MonoBehaviour
+    public class Throwable : MonoBehaviour
     {
         private Rigidbody2D _rigidbody2D;
 
