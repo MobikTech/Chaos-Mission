@@ -5,6 +5,7 @@ using ChaosMission.Input.ActionsMaps;
 using ChaosMission.Input.Handlers;
 using ChaosMission.Player.Moving.Behaviours;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace ChaosMission.Player.Moving.States
 {
@@ -15,14 +16,14 @@ namespace ChaosMission.Player.Moving.States
         public Action? StateStarted { get; set; }
         public Action? StateStopped { get; set; }
 
-        private readonly PlayerMovingHandler _inputHandler;
+        private readonly InputAction _airMovingAction;
         private readonly Rigidbody2D _rigidbody2D;
         private readonly IOnAirSettings _onGroundSettings;
 
         public OnAir(byte priority, Rigidbody2D rigidbody2D, IOnAirSettings onAirSettings)
         {
             Priority = priority;
-            _inputHandler = new PlayerMovingHandler();
+            _airMovingAction = new PlayerMovingHandler().GetByType(PlayerMovingActions.AirMoving);
             _rigidbody2D = rigidbody2D;
             _onGroundSettings = onAirSettings;
         }
@@ -31,30 +32,33 @@ namespace ChaosMission.Player.Moving.States
 
         public void EnableState()
         {
-            _inputHandler.DisableAllActions();
-            _inputHandler.EnableAction(PlayerMovingActions.AirMoving);
+            // _inputHandler.DisableAllActions();
+            _airMovingAction.Enable();
             StateStarted?.Invoke();
         }
 
         public void DisableState()
         {
-            _inputHandler.DisableAction(PlayerMovingActions.AirMoving);
+            _airMovingAction.Disable();
             StateStopped?.Invoke();
-            // ResetVelocity();
         }
      
         public void FixedUpdate() => TryMove();
 
         private void TryMove()
         {
-            float actionValue = _inputHandler.ReadCurrentValue<float>(PlayerMovingActions.AirMoving);
+            if (!_airMovingAction.enabled)
+            {
+                return;
+            }
+            
+            float actionValue = _airMovingAction.ReadValue<float>();
 
             if (actionValue == 0)
             {
-                if (_rigidbody2D.velocity != Vector2.zero
-                    && _inputHandler.IsEnabled(PlayerMovingActions.AirMoving))
+                if (_rigidbody2D.velocity != Vector2.zero)
                 {
-                    // ResetVelocity();
+                    ResetVelocity();
                 }
                 return;
             }
@@ -69,6 +73,10 @@ namespace ChaosMission.Player.Moving.States
                 currentVelocity.y);
         }
 
-        private void ResetVelocity() => _rigidbody2D.velocity = new Vector2(0f, _rigidbody2D.velocity.y);
+        private void ResetVelocity()
+        {
+            _rigidbody2D.velocity = new Vector2(0f, _rigidbody2D.velocity.y);
+            Debug.Log("RESET");
+        }
     }
 }

@@ -15,21 +15,9 @@ MonoBehaviour:
   _maxMoveSpeed: 6
   _accelerationFactor: 0.411
   _jumpForce: 13
-  _groundLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  _groundCheckerHeightPercent: 0.1
-  _groundCheckerWidthPercent: 0.9
-  _wallLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  _fromWallJumpForce: 13
-  _slippingFactor: 1.2
-  _distance: 0.04
+  _maxSteamSpeed: 6
+  _steamAccelerationFactor: 0.3
   _ladderLayerMask:
     serializedVersion: 2
     m_Bits: 256
-  _ladderDistance: 2
-  _ladderAccelerationFactor: 1
-  _ladderMaxSpeed: 3
-  _ladderFallingGravity: 2
+  _ladderMaxSpeed: 5

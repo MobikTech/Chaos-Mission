@@ -5,6 +5,7 @@ using ChaosMission.Input.ActionsMaps;
 using ChaosMission.Input.Handlers;
 using ChaosMission.Player.Moving.Behaviours;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace ChaosMission.Player.Moving.States
 {
@@ -15,7 +16,7 @@ namespace ChaosMission.Player.Moving.States
         public Action? StateStarted { get; set; }
         public Action? StateStopped { get; set; }
         
-        private readonly PlayerMovingHandler _inputHandler;
+        private readonly InputAction _ladderingAction;
         private readonly Rigidbody2D _rigidbody2D;
         private readonly IOnLadderSettings _ladderingSettings;
         private readonly Collider2D _collider2D;
@@ -26,7 +27,7 @@ namespace ChaosMission.Player.Moving.States
             Collider2D collider2D)
         {
             Priority = priority;
-            _inputHandler = new PlayerMovingHandler();
+            _ladderingAction = new PlayerMovingHandler().GetByType(PlayerMovingActions.Laddering);
             _rigidbody2D = rigidbody2D;
             _ladderingSettings = ladderingSettings;
             _collider2D = collider2D;
@@ -52,14 +53,14 @@ namespace ChaosMission.Player.Moving.States
 
         public void EnableState()
         {
-            _inputHandler.DisableAllActions();
-            _inputHandler.EnableAction(PlayerMovingActions.Laddering);
+            // _inputHandler.DisableAllActions();
+            _ladderingAction.Enable();
             StateStarted?.Invoke();
         }
 
         public void DisableState()
         {
-            _inputHandler.DisableAction(PlayerMovingActions.Laddering);
+            _ladderingAction.Disable();
             StateStopped?.Invoke();
         }
 
@@ -69,7 +70,7 @@ namespace ChaosMission.Player.Moving.States
 
         private void ToLadder()
         {
-            Vector2 actionValue = _inputHandler.ReadCurrentValue<Vector2>(PlayerMovingActions.Laddering);
+            Vector2 actionValue =  _ladderingAction.ReadValue<Vector2>();
             
             if (actionValue == Vector2.zero)
             {

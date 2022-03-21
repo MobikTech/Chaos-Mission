@@ -19,40 +19,43 @@ namespace ChaosMission.Player.Moving.States
 
         public bool IsIdle { get; private set; } = true;
 
-        private readonly PlayerMovingHandler _inputHandler;
+        private readonly InputAction _walkingAction;
+        private readonly InputAction _jumpingAction;
         private readonly Rigidbody2D _rigidbody2D;
         private readonly IOnGroundSettings _onGroundSettings;
 
         public OnGround(byte priority, Rigidbody2D rigidbody2D, IOnGroundSettings onGroundSettings)
         {
             Priority = priority;
-            _inputHandler = new PlayerMovingHandler();
             _rigidbody2D = rigidbody2D;
             _onGroundSettings = onGroundSettings;
+            
+            PlayerMovingHandler handler = new PlayerMovingHandler();
+            _walkingAction = handler.GetByType(PlayerMovingActions.Walking);
+            _jumpingAction = handler.GetByType(PlayerMovingActions.Jumping);
 
             InitHandlers();
         }
 
         public bool IsTriggered() => _rigidbody2D.velocity.y == 0;
 
-        private void InitHandlers() => _inputHandler.AddHandler(PlayerMovingActions.Jumping, JumpingHandler);
+        private void InitHandlers() => _jumpingAction.performed += JumpingHandler;
 
         public void EnableState()
         {
-            _inputHandler.DisableAllActions();
-            _inputHandler.EnableAction(PlayerMovingActions.Walking);
-            _inputHandler.EnableAction(PlayerMovingActions.Jumping);
+            // _inputHandler.DisableAllActions();
+            _walkingAction.Enable();
+            _jumpingAction.Enable();
                     
             StateStarted?.Invoke();
         }
 
         public void DisableState()
         {
-            _inputHandler.DisableAction(PlayerMovingActions.Walking);
-            _inputHandler.DisableAction(PlayerMovingActions.Jumping);
+            _walkingAction.Disable();
+            _jumpingAction.Disable();
    
             StateStopped?.Invoke();
-            // ResetVelocity();
         }   
 
 #region Jumping
@@ -69,14 +72,17 @@ namespace ChaosMission.Player.Moving.States
 
         private void TryMove()
         {
-            float actionValue = _inputHandler.ReadCurrentValue<float>(PlayerMovingActions.Walking);
+            if (!_walkingAction.enabled)
+            {
+                return;
+            }
+            float actionValue = _walkingAction.ReadValue<float>();
                     
             if (actionValue == 0)
             {
-                if (_rigidbody2D.velocity != Vector2.zero 
-                    && _inputHandler.GetByType(PlayerMovingActions.Walking).enabled)
+                if (_rigidbody2D.velocity != Vector2.zero)
                 {
-                    // ResetVelocity();
+                    ResetVelocity();
                 }
                 return;
             }

@@ -6,8 +6,6 @@ namespace ChaosMission.Input.Handlers
 {
     public sealed class PlayerMovingHandler : ActionsMapHandler<PlayerMovingActions>
     {
-        // public PlayerMovingHandler(InputCollection inputCollection) : base(inputCollection) {}
-
         public override InputAction GetByType(PlayerMovingActions actionType)
         {
             return actionType switch
@@ -20,6 +18,5 @@ namespace ChaosMission.Input.Handlers
             };
         }
 
-      
     }
 }
