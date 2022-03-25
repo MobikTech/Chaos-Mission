@@ -6,7 +6,7 @@ namespace ChaosMission.UI
 {
     public sealed class FindGameHandler : MonoBehaviour
     {
-        [SerializeField] private TMP_InputField _inputField;
+        [SerializeField] private TMP_InputField _inputField = null!;
 
         private const string DefaultAddress = "127.0.0.1:8888";
 

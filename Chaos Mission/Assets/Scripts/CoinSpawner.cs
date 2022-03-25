@@ -7,9 +7,9 @@ namespace ChaosMission
 {
     public class CoinSpawner : MonoBehaviour
     {
-        [SerializeField] private GameObject _coinPrefab;
-        [SerializeField] private GameObject[] _spawnObjects;
-        private ISpawner _spawner;
+        [SerializeField] private GameObject _coinPrefab = null!;
+        [SerializeField] private GameObject[] _spawnObjects = null!;
+        private ISpawner _spawner = null!;
         
         private void Start()
         {

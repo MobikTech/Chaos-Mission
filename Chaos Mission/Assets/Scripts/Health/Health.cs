@@ -6,8 +6,8 @@ namespace ChaosMission.Health
     {
         public int CurrentHealth { get; private set; }
         public readonly int MaxHealth;
-        public Action Die;
-        public Action<float> DisplayHealth;
+        public Action? Die;
+        public Action<float>? DisplayHealth;
 
         public float GetCurrentNormalizedHealth()
         {
@@ -44,7 +44,7 @@ namespace ChaosMission.Health
             
         }
 
-        public Health(int maxHealth, int currentCurrentHealth)
+        private Health(int maxHealth, int currentCurrentHealth)
         {
             CurrentHealth = currentCurrentHealth;
             MaxHealth = maxHealth;

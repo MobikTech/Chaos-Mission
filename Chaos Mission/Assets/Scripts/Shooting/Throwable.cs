@@ -5,7 +5,7 @@ namespace ChaosMission.Shooting
     [RequireComponent(typeof(Rigidbody2D))]
     public class Throwable : MonoBehaviour
     {
-        private Rigidbody2D _rigidbody2D;
+        private Rigidbody2D _rigidbody2D = null!;
 
         private void Awake()
         {

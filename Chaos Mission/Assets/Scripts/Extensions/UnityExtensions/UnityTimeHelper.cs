@@ -6,13 +6,13 @@ namespace ChaosMission.Extensions.UnityExtensions
     {
         private const int MillisecondsInSeconds = 1000;
         private const int RoundAccuracy = 3;
-        private static readonly float FixedDeltaTime = Time.fixedDeltaTime;
+        private static readonly float s_fixedDeltaTime = Time.fixedDeltaTime;
 
 
         public static int GetMillisecondsToNextFixedUpdate()
         {
-            float timeFromLastFixedUpdate = (Time.realtimeSinceStartup - Time.fixedUnscaledTime) % FixedDeltaTime;
-            float inSeconds = FixedDeltaTime - timeFromLastFixedUpdate;
+            float timeFromLastFixedUpdate = (Time.realtimeSinceStartup - Time.fixedUnscaledTime) % s_fixedDeltaTime;
+            float inSeconds = s_fixedDeltaTime - timeFromLastFixedUpdate;
             return (int)(inSeconds * MillisecondsInSeconds);
         }
     }

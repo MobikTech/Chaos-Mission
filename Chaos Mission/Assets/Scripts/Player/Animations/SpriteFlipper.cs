@@ -1,4 +1,3 @@
-using System;
 using ChaosMission.Common;
 using UnityEngine;
 
@@ -7,8 +6,8 @@ namespace ChaosMission.Player.Animations
     [RequireComponent(typeof(Rigidbody2D), typeof(Transform))]
     public class SpriteFlipper : MonoBehaviour
     {
-        private Rigidbody2D _rigidbody2D;
-        private Transform _transform;
+        private Rigidbody2D _rigidbody2D = null!;
+        private Transform _transform = null!;
         private float _lastXVelocityValue = 1f;
 
         private void Awake()

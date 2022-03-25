@@ -6,12 +6,12 @@ namespace ChaosMission.Audio
 {
     public class MusicPlayer : MonoBehaviour
     {
-        [SerializeField] private Track[] _menuMusics;
-        [SerializeField] private Track[] _levelMusics;
+        [SerializeField] private Track[] _menuMusics = null!;
+        [SerializeField] private Track[] _levelMusics = null!;
         
-        private Track[] _currentPlayList;
+        private Track[]? _currentPlayList;
 
-        private AudioSource _audioSource;
+        private AudioSource _audioSource = null!;
         
         private void Awake()
         {

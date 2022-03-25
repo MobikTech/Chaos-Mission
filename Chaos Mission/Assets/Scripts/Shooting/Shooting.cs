@@ -7,14 +7,14 @@ namespace ChaosMission.Shooting
 {
     public sealed class Shooting : MonoBehaviour
     {
-        [SerializeField] private GameObject _bulletPrefab;
-        [SerializeField] private Transform _bulletsParent;
+        [SerializeField] private GameObject _bulletPrefab = null!;
+        [SerializeField] private Transform _bulletsParent = null!;
         [SerializeField] private float _throwForce = 13f;
         [SerializeField] private float _offset = 1f;
 
         private const float BulletZPosition = -1;
-        private Camera _mainCamera;
-        private InputAction _shootingAction;
+        private Camera _mainCamera = null!;
+        private InputAction _shootingAction = null!;
 
 #region UnityMethods
 
