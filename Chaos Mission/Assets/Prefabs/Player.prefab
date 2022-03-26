@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 502059380}
   - component: {fileID: 502059382}
   - component: {fileID: 502059381}
+  - component: {fileID: 2874036}
   m_Layer: 7
   m_Name: MovingEffect
   m_TagString: Untagged
@@ -4804,6 +4805,19 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &2874036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502059379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f75e22a3e4ce47f6a7846ba3840d65cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveController: {fileID: 7851906410231597126}
 --- !u!1 &1833220439
 GameObject:
   m_ObjectHideFlags: 0
@@ -4815,6 +4829,7 @@ GameObject:
   - component: {fileID: 1833220440}
   - component: {fileID: 1833220442}
   - component: {fileID: 1833220441}
+  - component: {fileID: 791673084}
   m_Layer: 7
   m_Name: JumpEffect
   m_TagString: Untagged
@@ -9666,6 +9681,19 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &791673084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833220439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9acf56f2bc5a4265a36957cd0536e28f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveController: {fileID: 7851906410231597126}
 --- !u!1 &9055431775295644128
 GameObject:
   m_ObjectHideFlags: 0
@@ -9751,7 +9779,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.6666667, y: 1.25}
+  m_Size: {x: 0.75, y: 1.25}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -9796,7 +9824,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.6666667, y: 1.3333334}
-    newSize: {x: 0.6666667, y: 1.25}
+    newSize: {x: 0.75, y: 1.25}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
