@@ -21,6 +21,7 @@ namespace ChaosMission.Player.Moving.States
         private readonly Rigidbody2D _rigidbody2D;
         private readonly IOnAirSettings _onGroundSettings;
         private bool _isFalling = false;
+        private const float JumpTriggerApproximation = 0.1f;
 
         public OnAir(byte priority, Rigidbody2D rigidbody2D, IOnAirSettings onAirSettings) 
             : base("OnAir", priority)
@@ -30,7 +31,8 @@ namespace ChaosMission.Player.Moving.States
             _onGroundSettings = onAirSettings;
         }
 
-        public override bool IsTriggered() => _rigidbody2D.velocity.y != 0;
+        public override bool IsTriggered() =>
+            !CustomMath.Approximate(_rigidbody2D.velocity.y, 0f, JumpTriggerApproximation);
 
         public override void EnableState()
         {

@@ -26,5 +26,9 @@ namespace ChaosMission.Common
             !CustomMath.IsSameSign(value1, value2) 
             && !CustomMath.EqualsZero(value1)
             && !CustomMath.EqualsZero(value2);
+
+        public static float Absolute(float value) => value * GetSign(value);
+
+        public static bool Approximate(float a, float b, float tolerance) => (Absolute(a - b) < tolerance);
     }
 }

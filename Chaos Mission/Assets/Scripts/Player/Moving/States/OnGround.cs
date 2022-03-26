@@ -24,6 +24,7 @@ namespace ChaosMission.Player.Moving.States
         private readonly InputAction _jumpingAction;
         private readonly Rigidbody2D _rigidbody2D;
         private readonly IOnGroundSettings _onGroundSettings;
+        private const float JumpTriggerApproximation = 0.1f;
 
         public OnGround(byte priority, Rigidbody2D rigidbody2D, IOnGroundSettings onGroundSettings) 
             : base("OnGround", priority)
@@ -38,7 +39,8 @@ namespace ChaosMission.Player.Moving.States
             InitHandlers();
         }
 
-        public override bool IsTriggered() => _rigidbody2D.velocity.y == 0;
+        public override bool IsTriggered() =>
+            CustomMath.Approximate(_rigidbody2D.velocity.y, 0f, JumpTriggerApproximation);
 
         private void InitHandlers() => _jumpingAction.performed += JumpingHandler;
 
