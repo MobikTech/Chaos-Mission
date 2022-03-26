@@ -5,9 +5,9 @@ namespace ChaosMission.Player
 {
     public class PlayerState : MonoBehaviour
     {
-        private Health.Health _health;
-        [SerializeField] private int _maxHealth;
-        [SerializeField] private HealthBar _healthBar;
+        private Health.Health _health = null!;
+        [SerializeField] private int _maxHealth = 100;
+        [SerializeField] private HealthBar _healthBar = null!;
 
         private void Awake()
         {

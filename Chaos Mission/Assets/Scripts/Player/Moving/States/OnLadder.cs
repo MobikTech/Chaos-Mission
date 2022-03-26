@@ -1,20 +1,21 @@
-#nullable enable
 using System;
+using ChaosMission.Common;
 using ChaosMission.GameSettings.PlayerMoving;
 using ChaosMission.Input.ActionsMaps;
 using ChaosMission.Input.Handlers;
 using ChaosMission.Player.Moving.Behaviours;
+using ChaosMission.Player.Moving.SubStateActions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace ChaosMission.Player.Moving.States
 {
-    public sealed class OnLadder : IMovingState, IFixedUpdatable
+    public sealed class OnLadder : MovingState, IFixedUpdatable, IOnLadderActions
     {
-        public string Name => "OnLadder";
-        public byte Priority { get; }
-        public Action? StateStarted { get; set; }
-        public Action? StateStopped { get; set; }
+        public Action? LadderingVertStarted { get; set; }
+        public Action? LadderingVertStopped { get; set; }
+        public Action? LadderingHorStarted { get; set; }
+        public Action? LadderingHorStopped { get; set; }
         
         private readonly InputAction _ladderingAction;
         private readonly Rigidbody2D _rigidbody2D;
@@ -22,11 +23,12 @@ namespace ChaosMission.Player.Moving.States
         private readonly Collider2D _collider2D;
 
         private float _originalGravity;
+        private bool _isVertLaddering = false;
+        private bool _isHorLaddering = false;
 
         public OnLadder(byte priority, Rigidbody2D rigidbody2D, IOnLadderSettings ladderingSettings,
-            Collider2D collider2D)
+            Collider2D collider2D) : base("OnLadder", priority)
         {
-            Priority = priority;
             _ladderingAction = new PlayerMovingHandler().GetByType(PlayerMovingActions.Laddering);
             _rigidbody2D = rigidbody2D;
             _ladderingSettings = ladderingSettings;
@@ -49,28 +51,77 @@ namespace ChaosMission.Player.Moving.States
             };
         }
 
-        public bool IsTriggered()
+        public override bool IsTriggered()
         {
-            return TouchesLadder();
-            // && Keyboard.current.wKey.isPressed;
+            return TouchesLadder()
+            && Keyboard.current.wKey.isPressed;
         }
 
-        public void EnableState()
+        public override void EnableState()
         {
             _ladderingAction.Enable();
-            StateStarted?.Invoke();
+            base.EnableState();
+
+            if (!CustomMath.EqualsZero(_rigidbody2D.velocity.y))
+            {
+                LadderingVertStarted?.Invoke();
+                _isVertLaddering = true;
+                return;
+            }
+
+            if (!CustomMath.EqualsZero(_rigidbody2D.velocity.x))
+            {
+                LadderingHorStarted?.Invoke();
+                _isHorLaddering = true;
+                return;
+            }
         }
 
-        public void DisableState()
+        public override void DisableState()
         {
             _ladderingAction.Disable();
-            StateStopped?.Invoke();
+            base.DisableState();
+
+            if (_isVertLaddering)
+            {
+                LadderingVertStopped?.Invoke();
+                _isVertLaddering = false;
+            }
+            else if (_isHorLaddering)
+            {
+                LadderingHorStopped?.Invoke();
+                _isHorLaddering = false;
+            }
         }
 
         private bool TouchesLadder() => _collider2D.IsTouchingLayers(_ladderingSettings.LadderLayerMask.value);
 
-        public void FixedUpdate() => ToLadder();
+        public void FixedUpdate()
+        {
+            CallSubStateActions();
+            ToLadder();
+        }
 
+        private void CallSubStateActions()
+        {
+            Vector2 actionValue =  _ladderingAction.ReadValue<Vector2>();
+            
+            if (_isHorLaddering && !CustomMath.EqualsZero(actionValue.y) || !CustomMath.EqualsZero(actionValue.y))
+            {
+                LadderingHorStopped?.Invoke();
+                LadderingVertStarted?.Invoke();
+                _isVertLaddering = true;
+                _isHorLaddering = false;
+            }
+            else if (_isVertLaddering && CustomMath.EqualsZero(actionValue.y) && !CustomMath.EqualsZero(actionValue.x))
+            {
+                LadderingVertStopped?.Invoke();
+                LadderingHorStarted?.Invoke();
+                _isVertLaddering = false;
+                _isHorLaddering = true;
+            }
+        }
+        
         private void ToLadder()
         {
             Vector2 actionValue =  _ladderingAction.ReadValue<Vector2>();
@@ -88,5 +139,7 @@ namespace ChaosMission.Player.Moving.States
         }
 
         private void ResetVelocity() => _rigidbody2D.velocity = Vector2.zero;
+
+
     }
 }

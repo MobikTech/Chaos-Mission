@@ -1,5 +1,4 @@
 using System;
-using ChaosMission.Player.Moving.Behaviours;
 
 namespace ChaosMission.Player.Moving
 {
@@ -7,6 +6,7 @@ namespace ChaosMission.Player.Moving
     {
         public string Name { get; }
         public byte Priority { get; }
+        public bool IsActive { get; }
         public Action? StateStarted { get; set; }
         public Action? StateStopped { get; set; }
 
