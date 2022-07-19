@@ -5,7 +5,7 @@ namespace ChaosMission.Input.Core
 {
     public abstract class ActionsMapHandler<TActionMap, TInputCollection> : IActionsMapHandler<TActionMap>
         where TActionMap : Enum
-        where TInputCollection : IInputActionCollection2, new()
+        where TInputCollection : IInputActionCollection, new()
     {
         protected static readonly TInputCollection s_inputCollection;
 

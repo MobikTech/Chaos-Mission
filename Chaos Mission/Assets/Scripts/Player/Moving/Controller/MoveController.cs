@@ -1,4 +1,3 @@
-#nullable enable
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,7 +10,7 @@ using UnityEngine;
 namespace ChaosMission.Player.Moving.Controller
 {
     [RequireComponent(typeof(Collider2D), typeof(Rigidbody2D))]
-    public sealed class MoveController : MonoBehaviour, ICoroutineActivator, IStateApplier
+    public sealed class MoveController : MonoBehaviour, ICoroutineActivator
     {
         [SerializeField] private MovingSettings? _movingSettings;
         private Rigidbody2D _rigidbody2D = null!;
@@ -22,7 +21,7 @@ namespace ChaosMission.Player.Moving.Controller
         private List<IMovingState> _statesByPriorityAscending = null!;
         private IFixedUpdatable? _currentFixedUpdatable;
         private IUpdatable? _currentUpdatable;
-        
+
         private void Awake()
         {
             _collider2D = GetComponent<Collider2D>();
@@ -94,7 +93,7 @@ namespace ChaosMission.Player.Moving.Controller
 
        
 
-        public void ApplyState(IMovingState state)
+        private void ApplyState(IMovingState state)
         {
             _currentState?.DisableState();
             _currentState = state;

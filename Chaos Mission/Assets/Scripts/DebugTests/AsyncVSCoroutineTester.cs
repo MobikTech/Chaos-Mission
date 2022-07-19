@@ -10,7 +10,6 @@ namespace ChaosMission.DebugTests
     {
         [SerializeField] private bool _showFixedUpdateLog = false;
         private bool _isAlive = false;
-        
         private int _frameCounterAsync = 0;
         private int _frameCounterCoroutine = 0;
 

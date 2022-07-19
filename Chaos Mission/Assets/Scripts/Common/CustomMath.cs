@@ -23,9 +23,9 @@ namespace ChaosMission.Common
         
         // assumed that ZERO has no sign. If here is zero value - returned false
         public static bool HaveDifferentSigns(float value1, float value2) =>
-            !CustomMath.IsSameSign(value1, value2) 
-            && !CustomMath.EqualsZero(value1)
-            && !CustomMath.EqualsZero(value2);
+            !IsSameSign(value1, value2) 
+            && !EqualsZero(value1)
+            && !EqualsZero(value2);
 
         public static float Absolute(float value) => value * GetSign(value);
 

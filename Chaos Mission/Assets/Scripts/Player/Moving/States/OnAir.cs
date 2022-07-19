@@ -31,8 +31,10 @@ namespace ChaosMission.Player.Moving.States
             _onGroundSettings = onAirSettings;
         }
 
-        public override bool IsTriggered() =>
-            !CustomMath.Approximate(_rigidbody2D.velocity.y, 0f, JumpTriggerApproximation);
+        public override bool IsTriggered()
+        {
+            return !CustomMath.Approximate(_rigidbody2D.velocity.y, 0f, JumpTriggerApproximation);
+        }
 
         public override void EnableState()
         {
